@@ -1,0 +1,54 @@
+/users
+  uid
+    name
+    uid
+    avatar
+    appsAvailable
+
+/checkin
+  checkinId
+    avatar
+    checkinId
+    name
+    type
+    protein,
+    fats,
+    carbs,
+    calories,
+    currentWeight,
+    currentBodyFat,
+    timestamp
+    uid
+
+/usersCheckins
+  uid
+    checkinId
+      avatar
+      checkinId
+      name
+      type
+      protein,
+      fats,
+      carbs,
+      calories,
+      currentWeight,
+      currentBodyFat,
+      timestamp
+      uid
+
+/usersApps
+  uid
+    type: macros 
+        currentWeight,
+        currentBodyFat,
+        currentTrainingHours,
+        currentTrainingIntensity,
+        targetWeight,
+        targetBodyFat,
+        fatConsumptionPreference
+        protein,
+        carbs,
+        fats,
+        calories
+        daysToTarget,
+        checkinSuccessRate
