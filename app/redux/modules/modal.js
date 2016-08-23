@@ -20,7 +20,7 @@ export function closeModal () {
 export function logCheckin (checkin) {
   return {
     type: LOG_CHECKIN,
-    checkin: checkin,
+    checkin,
   }
 }
 
@@ -28,12 +28,12 @@ export function saveAndCloseModal (checkin) {
   return function (dispatch) {
     saveCheckin(checkin)
       .then(() => dispatch(closeModal()))
-      .catch((error) => console.warn('Error saving decision', error))
+      .catch((error) => console.warn('Error saving checkin', error))
   }
 }
 
 const initialModalState = Map({
-  open: false,
+  isOpen: false,
   checkin: {
     protein: '',
     fats: '',
@@ -44,15 +44,15 @@ const initialModalState = Map({
   },
 })
 
-export function modal (state = initialModalState, action) {
+export default function modal (state = initialModalState, action) {
   switch (action.type) {
     case OPEN_MODAL :
       return state.merge({
-        open: true,
+        isOpen: true,
       })
     case CLOSE_MODAL :
       return state.merge({
-        open: false,
+        isOpen: false,
       })
     case LOG_CHECKIN :
       return state.merge({
