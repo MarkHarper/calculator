@@ -17,10 +17,11 @@ export function closeModal () {
   }
 }
 
-export function logCheckin (checkin) {
+export function updateCheckinText (item, itemContent) {
   return {
     type: LOG_CHECKIN,
-    checkin,
+    item,
+    itemContent,
   }
 }
 
@@ -34,14 +35,12 @@ export function saveAndCloseModal (checkin) {
 
 const initialModalState = Map({
   isOpen: false,
-  checkin: {
-    protein: '',
-    fats: '',
-    carbs: '',
-    calories: '',
-    currentWeight: '',
-    currentBodyFat: '',
-  },
+  protein: '',
+  fats: '',
+  carbs: '',
+  calories: '',
+  currentWeight: '',
+  currentBodyFat: '',
 })
 
 export default function modal (state = initialModalState, action) {
@@ -56,7 +55,7 @@ export default function modal (state = initialModalState, action) {
       })
     case LOG_CHECKIN :
       return state.merge({
-        checkin: action.checkin,
+        [action.item]: action.itemContent,
       })
     default :
       return state

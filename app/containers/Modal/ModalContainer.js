@@ -15,13 +15,14 @@ import * as modalActionCreators from 'redux/modules/modal'
 
 
 function mapStateToProps ({modal, users}) {
+  let id = users.get('authedId')
   return {
-    user: users.get('authedId') ? users.get(users.get('authedId')).info : {},
-    protein: modal.get('checkin protein'),
-    fats: modal.get('checkin fats'),
-    carbs: modal.get('checkin carbs'),
-    currentWeight: modal.get('checkin currentWeight'),
-    currentBodyFat: modal.get('checkin currentBodyFat'),
+    user: users.get('authedId') ? users.getIn([id, 'info']) : {},
+    protein: modal.get('protein'),
+    fats: modal.get('fats'),
+    carbs: modal.get('carbs'),
+    currentWeight: modal.get('currentWeight'),
+    currentBodyFat: modal.get('currentBodyFat'),
     isOpen: modal.get('isOpen'),
   }
 }

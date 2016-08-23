@@ -7,9 +7,6 @@
 
 /checkin
   checkinId
-    avatar
-    checkinId
-    name
     type
     protein,
     fats,

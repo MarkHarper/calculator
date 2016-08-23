@@ -30,19 +30,20 @@ Modal.propTypes = {
   openModal: func.isRequired,
   closeModal: func.isRequired,
   saveAndCloseModal: func.isRequired,
+  updateCheckinText: func.isRequired,
 }
 
 export default function Modal (props) {
   function submitDecision () {
     props.saveAndCloseModal(formatCheckin(props.user, props.protein, props.fats, props.carbs, props.currentWeight, props.currentBodyFat))
   }
-
   return (
     <span className={darkBtn} onClick={props.openModal}>
       {'New Checkin'}
       <ReactModal style={modalStyles} isOpen={props.isOpen} onRequestClose={props.closeModal}>
         <div className={newDecisionInputContainer}>
           <input
+            onChange={(e) => props.updateCheckinText('protein', e.target.value)}
             value={props.protein}
             maxLength={5}
             type='text'
@@ -51,6 +52,7 @@ export default function Modal (props) {
         </div>
         <div className={newDecisionInputContainer}>
           <input
+            onChange={(e) => props.updateCheckinText('fats', e.target.value)}
             value={props.fats}
             maxLength={5}
             type='text'
@@ -59,6 +61,7 @@ export default function Modal (props) {
         </div>
         <div className={newDecisionInputContainer}>
           <input
+            onChange={(e) => props.updateCheckinText('carbs', e.target.value)}
             value={props.carbs}
             maxLength={5}
             type='text'
@@ -67,6 +70,7 @@ export default function Modal (props) {
         </div>
         <div className={newDecisionInputContainer}>
           <input
+            onChange={(e) => props.updateCheckinText('currentBodyFat', e.target.value)}
             value={props.currentBodyFat}
             maxLength={5}
             type='text'
@@ -75,6 +79,7 @@ export default function Modal (props) {
         </div>
         <div className={newDecisionInputContainer}>
           <input
+            onChange={(e) => props.updateCheckinText('currentWeight', e.target.value)}
             value={props.currentWeight}
             maxLength={5}
             type='text'
