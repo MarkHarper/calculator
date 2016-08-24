@@ -64,6 +64,13 @@ export function fetchAndHandleAuthedUser () {
   }
 }
 
+export function logoutAndUnauth () {
+  return function (dispatch) {
+    logout()
+    dispatch(unauthUser())
+  }
+}
+
 const initialUserState = Map({
   lastUpdated: 0,
   info: {

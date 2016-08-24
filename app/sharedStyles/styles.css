@@ -66,3 +66,7 @@ html, body {
 .darkBtn:hover {
   background: #1877E6
 }
+
+.center {
+  text-align: center;
+}
