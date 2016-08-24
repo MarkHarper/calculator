@@ -1,4 +1,5 @@
-import auth, { logout, saveUser } from 'helpers/auth'
+import auth, { logout } from 'helpers/auth'
+import { saveUser } from 'helpers/api'
 import { formatUserInfo } from 'helpers/utils'
 import { Map } from 'immutable'
 
@@ -78,6 +79,7 @@ const initialUserState = Map({
     uid: '',
     avatar: '',
   },
+  goal: {},
   decisionsMade: {},
 })
 

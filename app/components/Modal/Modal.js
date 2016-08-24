@@ -34,7 +34,7 @@ Modal.propTypes = {
 }
 
 export default function Modal (props) {
-  function submitDecision () {
+  function submitCheckin () {
     props.saveAndCloseModal(formatCheckin(props.user, props.protein, props.fats, props.carbs, props.currentWeight, props.currentBodyFat))
   }
   return (
@@ -88,7 +88,7 @@ export default function Modal (props) {
         </div>
         <button
           className={submitDecisionBtn}
-          onClick={submitDecision}>
+          onClick={submitCheckin}>
             {'Submit'}
         </button>
       </ReactModal>
