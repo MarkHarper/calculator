@@ -7,6 +7,20 @@ import { formatUserInfo } from 'helpers/utils'
 import { container, innerContainer } from './styles.css'
 import * as userActionCreators from 'redux/modules/users'
 
+function isGoalReal (users) {
+  if (users.get('isAuthed')) {
+    const id = users.get('authedId')
+    const user = users.get(id)
+    if (user && user.get('goal') && user.getIn(['goal', 'targetWeight']).length !== 0) {
+      return true
+    } else {
+      return false
+    }
+  } else {
+    return false
+  }
+}
+
 const MainContainer = React.createClass({
   propTypes: {
     isAuthed: PropTypes.bool.isRequired,
@@ -14,6 +28,7 @@ const MainContainer = React.createClass({
     authUser: PropTypes.func.isRequired,
     fetchingUserSuccess: PropTypes.func.isRequired,
     removeFetchingUser: PropTypes.func.isRequired,
+    hasGoal: PropTypes.bool.isRequired,
   },
   componentDidMount () {
     firebaseAuth().onAuthStateChanged((user) => {
@@ -34,7 +49,7 @@ const MainContainer = React.createClass({
     return this.props.isFetching === true
       ? null
       : <div className={container}>
-          <Navigation isAuthed={this.props.isAuthed} />
+          <Navigation hasGoal={this.props.hasGoal} isAuthed={this.props.isAuthed} />
           <div className={innerContainer}>
             {this.props.children}
           </div>
@@ -43,6 +58,6 @@ const MainContainer = React.createClass({
 })
 
 export default connect(
-  ({users}) => ({isAuthed: users.get('isAuthed'), isFetching: users.get('isFetching')}),
+  ({users}) => ({hasGoal: isGoalReal(users), isAuthed: users.get('isAuthed'), isFetching: users.get('isFetching')}),
   (dispatch) => bindActionCreators(userActionCreators, dispatch)
 )(MainContainer)

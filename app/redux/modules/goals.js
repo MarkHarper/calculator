@@ -1,13 +1,22 @@
 import { Map } from 'immutable'
 import { saveGoalToFirebase } from 'helpers/api'
 
-const LOG_GOAL = 'LOG_GOAL'
+const UPDATE_GOAL_TEXT = 'UPDATE_GOAL_TEXT'
+export const UPDATE_GOAL = 'UPDATE_GOAL'
 
 export function updateGoalText (item, itemContent) {
   return {
-    type: LOG_GOAL,
+    type: UPDATE_GOAL_TEXT,
     item,
     itemContent,
+  }
+}
+
+export function updateGoal (uid, goal) {
+  return {
+    type: UPDATE_GOAL,
+    uid,
+    goal,
   }
 }
 
@@ -27,7 +36,7 @@ const initialGoalState = Map({
 
 export default function goal (state = initialGoalState, action) {
   switch (action.type) {
-    case LOG_GOAL :
+    case UPDATE_GOAL_TEXT :
       return state.merge({
         [action.item]: action.itemContent,
       })

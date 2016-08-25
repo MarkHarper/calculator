@@ -2,6 +2,7 @@ import auth, { logout } from 'helpers/auth'
 import { saveUser } from 'helpers/api'
 import { formatUserInfo } from 'helpers/utils'
 import { Map } from 'immutable'
+import { UPDATE_GOAL } from './goals'
 
 const AUTH_USER = 'AUTH_USER'
 const UNAUTH_USER = 'UNAUTH_USER'
@@ -79,8 +80,12 @@ const initialUserState = Map({
     uid: '',
     avatar: '',
   },
-  goal: {},
-  decisionsMade: {},
+  goal: Map({
+    currentWeight: '',
+    currentBodyFat: '',
+    targetWeight: '',
+    targetBodyFat: '',
+  }),
 })
 
 function user (state = initialUserState, action) {
@@ -89,6 +94,10 @@ function user (state = initialUserState, action) {
       return state.merge({
         info: action.user,
         lastUpdated: action.timestamp,
+      })
+    case UPDATE_GOAL :
+      return state.merge({
+        goal: action.goal,
       })
     default :
       return state
@@ -137,6 +146,10 @@ export default function users (state = initialState, action) {
     case REMOVE_FETCHING_USER :
       return state.merge({
         isFetching: false,
+      })
+    case UPDATE_GOAL :
+      return state.merge({
+        [action.uid]: user(state[action.uid], action),
       })
     default :
       return state

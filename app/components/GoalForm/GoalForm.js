@@ -15,10 +15,18 @@ GoalForm.propTypes = {
   // isSubmitDisabled: bool.isRequired,
   saveGoal: func.isRequired,
   updateGoalText: func.isRequired,
+  updateGoal: func.isRequired,
 }
 
 export default function GoalForm (props) {
   function submitGoal () {
+    let goal = {
+      currentWeight: props.currentWeight,
+      currentBodyFat: props.currentBodyFat,
+      targetWeight: props.targetWeight,
+      targetBodyFat: props.targetBodyFat,
+    }
+    props.updateGoal(props.user.get('uid'), goal)
     props.saveGoal(props.user, formatGoal(props.currentWeight, props.currentBodyFat, props.targetWeight, props.targetBodyFat))
   }
   return (
