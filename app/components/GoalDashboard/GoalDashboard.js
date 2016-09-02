@@ -18,7 +18,8 @@ GoalDashboard.propTypes = {
 //   return clean
 // }
 
-export default function GoalDashboard () {
+export default function GoalDashboard (props) {
+  console.log(props)
   return (
     <div>
       {'Dashboard'}

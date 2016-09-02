@@ -1,5 +1,7 @@
 import { Map } from 'immutable'
 import { saveGoalToFirebase } from 'helpers/api'
+// import { addListener } from 'redux/modules/listeners'
+// import { listenToDecisions, fetchSingleDecision } from 'helpers/api'
 
 const UPDATE_GOAL_TEXT = 'UPDATE_GOAL_TEXT'
 export const UPDATE_GOAL = 'UPDATE_GOAL'

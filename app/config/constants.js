@@ -1,11 +1,11 @@
 import firebase from 'firebase'
 
 // Initialize Firebase
-var config = {
-  apiKey: 'AIzaSyBT-N3BtnRtwVRBIbD4kPqZmcsHZviDinI',
-  authDomain: 'life-metrics.firebaseapp.com',
-  databaseURL: 'https://life-metrics.firebaseio.com',
-  storageBucket: 'life-metrics.appspot.com',
+const config = {
+  apiKey: 'AIzaSyAaRN7tbiRLsDmC11Oe4wGKTywlI4vp7CM',
+  authDomain: 'macros-4a573.firebaseapp.com',
+  databaseURL: 'https://macros-4a573.firebaseio.com',
+  storageBucket: 'macros.appspot.com',
 }
 
 firebase.initializeApp(config)
