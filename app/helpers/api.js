@@ -16,12 +16,12 @@ export function saveGoalToFirebase (user, goal) {
     .set(goal)
 }
 
-// export function listenToGoals (cb, error) {
-//   return ref.child('goal').on('value', (snapshot) => {
-//     return cb(snapshot.val() || {})
-//   }, error)
-// }
+export function listenToGoals (user, cb, error) {
+  return ref.child(`users/${user.get('uid')}/goal`).on('value', (snapshot) => {
+    return cb(snapshot.val() || {})
+  }, error)
+}
 
-// export function fetchGoals (user) {
-//   return ref.child(`users/${user.get('uid')}/goal`)
-// }
+export function fetchGoal (user) {
+  return ref.child(`users/${user.get('uid')}/goal`)
+}
