@@ -1,16 +1,12 @@
-.row {
-  padding: 1em;
-}
-
-.header {
-  composes: row;
-  border-bottom: 2px solid #9AC0DA;
-}
-
 .table {
-  border-spacing: 0;
-  text-align: left;
-  width: 100%;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  margin: 1em 0;
+  width: 75%;
+}
+
+.pie {
+  width: 25%;
+}
+
+.bottomContainer {
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,7 +1,8 @@
 import React, {PropTypes} from 'react'
 import {LineChart, Line, XAxis, YAxis,
   CartesianGrid, Pie, PieChart} from 'recharts'
-import {row, header, table} from './styles.css'
+import {Table} from 'components'
+import {table, bottomContainer} from './styles.css'
 
 GoalDashboard.propTypes = {
 
@@ -16,6 +17,12 @@ const mockLineData = [
       {weight: 166, bodyFat: 11},
       {weight: 165, bodyFat: 10},
 ]
+
+const data = {
+  carbs: 500,
+  fats: 300,
+  proteins: 600,
+}
 
 const mockPieData = [{name: 'Carbs', value: 500}, {name: 'Fats', value: 300},
                   {name: 'Proteins', value: 600}]
@@ -39,33 +46,12 @@ export default function GoalDashboard (props) {
         <Line type="monotone" dataKey="weight" stroke="#8884d8" />
         <Line type="monotone" dataKey="bodyFat" stroke="#8884d8" />
       </LineChart>
-      <PieChart width={100} height={100}>
-        <Pie data={mockPieData} cx={50} cy={50} outerRadius={30} fill="#82ca9d"/>
-      </PieChart>
-      <table className={table}>
-        <thead>
-          <tr>
-            <th className={header}></th>
-            <th className={header}>{'Carbohydrates'}</th>
-            <th className={header}>{'Fats'}</th>
-            <th className={header}>{'Proteins'}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className={row}>{'Daily'}</td>
-            <td className={row}>{'500'}</td>
-            <td className={row}>{'300'}</td>
-            <td className={row}>{'600'}</td>
-          </tr>
-          <tr>
-            <td className={row}>{'Weekly'}</td>
-            <td className={row}>{'3500'}</td>
-            <td className={row}>{'2100'}</td>
-            <td className={row}>{'4200'}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className={bottomContainer}>
+        <PieChart width={100} height={100}>
+          <Pie data={mockPieData} cx={50} cy={50} outerRadius={30} fill="#82ca9d"/>
+        </PieChart>
+        <Table data={data} positioning={table}/>
+      </div>
     </div>
   )
 }
