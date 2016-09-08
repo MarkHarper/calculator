@@ -35,7 +35,6 @@ const MainContainer = React.createClass({
       if (user) {
         const userData = user.providerData[0]
         const userInfo = formatUserInfo(userData.displayName, userData.photoURL, user.uid)
-        console.log(user)
         this.props.authUser(user.uid)
         this.props.fetchingUserSuccess(user.uid, userInfo, Date.now())
         if (this.props.location.pathname === '/') {

@@ -31,7 +31,6 @@ export default function GoalForm (props) {
   }
   return (
     <div>
-      {'New Plan'}
       <div className={newDecisionInputContainer}>
         <input
           onChange={(e) => props.updateGoalText('currentBodyFat', e.target.value)}

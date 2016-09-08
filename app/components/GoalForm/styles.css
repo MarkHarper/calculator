@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   color: #1877E6;
-  font-size: 23px;
+  font-size: 14px;
   font-weight: 100;
 }
 
@@ -30,7 +30,7 @@
 .submitDecisionBtn {
   composes: darkBtn;
   margin: 0px auto;
-  width: 150px;
+  width: 85px;
   text-align: center;
   display: block;
 }
@@ -48,11 +48,11 @@
 
 .titleInput {
   composes: baseTextArea from 'sharedStyles/styles.css';
-  height: 25px;
+  height: 12.5px;
   border-width: 0;
 }
 
 .titleContainer {
   composes: newDecisionInputContainer;
-  height: 40px;
+  height: 20px;
 }
