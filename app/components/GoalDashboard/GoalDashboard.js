@@ -9,6 +9,29 @@ GoalDashboard.propTypes = {
 
 }
 
+const mockGoalData = {
+  currentWeight: 170,
+  currentBodyFat: 15,
+  exerciseTime: 4,
+  exerciseIntensity: 11,
+  targetWeight: 165,
+  targetBodyFat: 8,
+  fatPreference: 0.4,
+}
+
+function macroCalc (data) {
+  let cal = data.targetWeight * (data.exerciseTime + data.exerciseIntensity)
+  return {
+    proteins: data.targetWeight * 4,
+    carbs: data.targetWeight * 9 * data.fatPreference,
+    fats: cal - (data.targetWeight * 4) - (data.targetWeight * 9 * data.fatPreference),
+  }
+}
+
+function timelineCalc () {
+
+}
+
 const mockLineData = [
       {weight: 170, bodyFat: 15},
       {weight: 169.5, bodyFat: 14.5},
