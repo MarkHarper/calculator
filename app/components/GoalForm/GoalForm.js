@@ -31,7 +31,6 @@ GoalForm.propTypes = {
 }
 
 export default function GoalForm (props) {
-  console.log(props)
   function submitGoal () {
     let goal = {
       currentWeight: props.editableCurrentWeight,

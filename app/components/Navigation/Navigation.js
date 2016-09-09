@@ -23,13 +23,10 @@ function NavLinks ({isAuthed}) {
 function ActionLinks ({isAuthed, hasGoal}) {
   if (isAuthed && hasGoal) {
     return <ul>
-        <li><button> {'Update Goal'} </button></li>
-        <li><ModalContainer /></li>
         <li><Link to='/logout' className={link}>{'Logout'}</Link></li>
       </ul>
   } else if (isAuthed) {
     return <ul>
-        <li><ModalContainer /></li>
         <li><Link to='/logout' className={link}>{'Logout'}</Link></li>
       </ul>
   } else {
