@@ -24,7 +24,7 @@ function isGoalReal (users) {
 const MainContainer = React.createClass({
   propTypes: {
     isAuthed: PropTypes.bool.isRequired,
-    isFetching: PropTypes.bool.isRequired,
+    isFetchingUser: PropTypes.bool.isRequired,
     authUser: PropTypes.func.isRequired,
     fetchingUserSuccess: PropTypes.func.isRequired,
     removeFetchingUser: PropTypes.func.isRequired,
@@ -46,7 +46,7 @@ const MainContainer = React.createClass({
     })
   },
   render () {
-    return this.props.isFetching === true
+    return this.props.isFetchingUser === true
       ? null
       : <div className={container}>
           <Navigation hasGoal={this.props.hasGoal} isAuthed={this.props.isAuthed} />
@@ -58,6 +58,6 @@ const MainContainer = React.createClass({
 })
 
 export default connect(
-  ({users}) => ({hasGoal: isGoalReal(users), isAuthed: users.get('isAuthed'), isFetching: users.get('isFetching')}),
+  ({users}) => ({hasGoal: isGoalReal(users), isAuthed: users.get('isAuthed'), isFetchingUser: users.get('isFetchingUser')}),
   (dispatch) => bindActionCreators(userActionCreators, dispatch)
 )(MainContainer)

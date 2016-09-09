@@ -18,13 +18,16 @@ export function formatCheckin (user, protein, fats, carbs, currentWeight, curren
   }
 }
 
-export function formatGoal (currentWeight, currentBodyFat, targetWeight, targetBodyFat) {
+export function formatGoal (data) {
   return {
     timestamp: Date.now(),
-    currentWeight,
-    currentBodyFat,
-    targetWeight,
-    targetBodyFat,
+    currentWeight: data.currentWeight,
+    currentBodyFat: data.currentBodyFat,
+    targetWeight: data.targetWeight,
+    targetBodyFat: data.targetBodyFat,
+    exerciseTime: data.exerciseTime,
+    exerciseIntensity: data.exerciseIntensity,
+    fatPreference: data.fatPreference,
   }
 }
 

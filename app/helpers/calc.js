@@ -12,6 +12,7 @@ Protein Gain:
 */
 
 export function macroCalc (data) {
+  console.log(data)
   let cal = data.targetWeight * (data.exerciseTime + data.exerciseIntensity)
   return {
     proteins: data.targetWeight * 4,

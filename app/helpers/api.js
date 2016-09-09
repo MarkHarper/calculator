@@ -22,6 +22,7 @@ export function listenToGoals (user, cb, error) {
   }, error)
 }
 
-export function fetchGoal (user) {
-  return ref.child(`users/${user.get('uid')}/goal`)
+export function fetchUsersGoal (uid) {
+  return ref.child(`users/${uid}/goal`).once('value')
+    .then((snapshot) => snapshot.val() || {})
 }

@@ -7,10 +7,13 @@ function mapStateToProps ({goals, users}) {
   let id = users.get('authedId')
   return {
     user: users.get('authedId') ? users.getIn([id, 'info']) : {},
-    currentWeight: goals.get('currentWeight'),
-    currentBodyFat: goals.get('currentBodyFat'),
-    targetWeight: goals.get('targetWeight'),
-    targetBodyFat: goals.get('targetBodyFat'),
+    currentWeight: users.getIn([id, 'goal', 'currentWeight']),
+    currentBodyFat: users.getIn([id, 'goal', 'currentBodyFat']),
+    targetWeight: users.getIn([id, 'goal', 'targetWeight']),
+    targetBodyFat: users.getIn([id, 'goal', 'targetBodyFat']),
+    exerciseTime: users.getIn([id, 'goal', 'exerciseTime']),
+    exerciseIntensity: users.getIn([id, 'goal', 'exerciseIntensity']),
+    fatPreference: users.getIn([id, 'goal', 'fatPreference']),
     editing: goals.get('editing'),
   }
 }

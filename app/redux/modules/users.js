@@ -2,7 +2,8 @@ import auth, { logout } from 'helpers/auth'
 import { saveUser } from 'helpers/api'
 import { formatUserInfo } from 'helpers/utils'
 import { Map } from 'immutable'
-import { UPDATE_GOAL } from './goals'
+import { UPDATE_GOAL, FETCHING_USERS_GOALS,
+  FETCHING_USERS_GOALS_SUCCESS, FETCHING_USERS_GOALS_ERROR } from './goals'
 
 const AUTH_USER = 'AUTH_USER'
 const UNAUTH_USER = 'UNAUTH_USER'
@@ -85,6 +86,9 @@ const initialUserState = Map({
     currentBodyFat: '',
     targetWeight: '',
     targetBodyFat: '',
+    exerciseTime: '',
+    exerciseIntensity: '',
+    fatPreference: '',
   }),
 })
 
@@ -105,10 +109,11 @@ function user (state = initialUserState, action) {
 }
 
 const initialState = Map({
-  isFetching: true,
+  isFetchingUser: true,
   error: '',
   isAuthed: false,
   authedId: '',
+  isFetchingGoal: false,
 })
 
 export default function users (state = initialState, action) {
@@ -125,31 +130,43 @@ export default function users (state = initialState, action) {
       })
     case FETCHING_USER :
       return state.merge({
-        isFetching: true,
+        isFetchingUser: true,
       })
     case FETCHING_USER_FAILURE :
       return state.merge({
-        isFetching: false,
+        isFetchingUser: false,
         error: action.error,
       })
     case FETCHING_USER_SUCCESS :
       return action.user === null
         ? state.merge({
           error: '',
-          isFetching: false,
+          isFetchingUser: false,
         })
         : state.merge({
-          isFetching: false,
+          isFetchingUser: false,
           error: '',
           [action.uid]: user(state[action.uid], action),
         })
     case REMOVE_FETCHING_USER :
       return state.merge({
-        isFetching: false,
+        isFetchingUser: false,
       })
     case UPDATE_GOAL :
       return state.merge({
         [action.uid]: user(state[action.uid], action),
+      })
+    case FETCHING_USERS_GOALS :
+      return state.merge({
+        isFetchingGoal: true,
+      })
+    case FETCHING_USERS_GOALS_SUCCESS :
+      return state.merge({
+        isFetchingGoal: false,
+      })
+    case FETCHING_USERS_GOALS_ERROR :
+      return state.merge({
+        isFetchingGoal: false,
       })
     default :
       return state

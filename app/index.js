@@ -18,7 +18,7 @@ const history = syncHistoryWithStore(hashHistory, store)
 function checkAuth (nextState, replace) {
   let state = store.getState()
   
-  if (state.users.get('isFetching')) {
+  if (state.users.get('isFetchingUser')) {
     return
   }
 

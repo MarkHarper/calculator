@@ -7,7 +7,7 @@ import * as userActionCreators from 'redux/modules/users'
 
 const AuthenticateContainer = React.createClass({
   propTypes: {
-    isFetching: PropTypes.bool.isRequired,
+    isFetchingUser: PropTypes.bool.isRequired,
     error: PropTypes.string.isRequired,
     fetchAndHandleAuthedUser: PropTypes.func.isRequired,
   },
@@ -22,7 +22,7 @@ const AuthenticateContainer = React.createClass({
   render () {
     return (
       <Authenticate
-        isFetching={this.props.isFetching}
+        isFetchingUser={this.props.isFetchingUser}
         error={this.props.error}
         onAuth={this.handleAuth} />
     )
@@ -31,7 +31,7 @@ const AuthenticateContainer = React.createClass({
 
 function mapStateToProps ({users}) {
   return {
-    isFetching: users.get('isFetching'),
+    isFetchingUser: users.get('isFetchingUser'),
     error: users.get('error'),
   }
 }

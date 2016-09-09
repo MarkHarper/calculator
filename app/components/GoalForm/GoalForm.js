@@ -11,6 +11,9 @@ GoalForm.propTypes = {
   currentBodyFat: string.isRequired,
   targetWeight: string.isRequired,
   targetBodyFat: string.isRequired,
+  exerciseTime: string.isRequired,
+  exerciseIntensity: string.isRequired,
+  fatPreference: string.isRequired,
   user: object.isRequired,
   // isSubmitDisabled: bool.isRequired,
   saveGoal: func.isRequired,
@@ -25,10 +28,12 @@ export default function GoalForm (props) {
       currentBodyFat: props.currentBodyFat,
       targetWeight: props.targetWeight,
       targetBodyFat: props.targetBodyFat,
+      exerciseTime: props.exerciseTime,
+      exerciseIntensity: props.exerciseIntensity,
+      fatPreference: props.fatPreference,
     }
-    console.log(props)
     props.updateGoal(props.user.get('uid'), goal)
-    props.saveGoal(props.user, formatGoal(props.currentWeight, props.currentBodyFat, props.targetWeight, props.targetBodyFat))
+    props.saveGoal(props.user, formatGoal(goal))
     props.deactivateForm()
   }
   return (
@@ -76,6 +81,39 @@ export default function GoalForm (props) {
           id='targetWeight'
           className={newDecisionInput}
           placeholder={props.targetWeight} />
+      </div>
+      <div className={newDecisionInputContainer}>
+        <label htmlFor='exerciseTime'>{'Exercise Time'}</label>
+        <input
+          onChange={(e) => props.updateGoalText('exerciseTime', e.target.value)}
+          value={props.exerciseTime}
+          maxLength={5}
+          type='text'
+          id='exerciseTime'
+          className={newDecisionInput}
+          placeholder={props.exerciseTime} />
+      </div>
+      <div className={newDecisionInputContainer}>
+        <label htmlFor='exerciseIntensity'>{'Exercise Intensity'}</label>
+        <input
+          onChange={(e) => props.updateGoalText('exerciseIntensity', e.target.value)}
+          value={props.exerciseIntensity}
+          maxLength={5}
+          type='text'
+          id='exerciseIntensity'
+          className={newDecisionInput}
+          placeholder={props.exerciseIntensity} />
+      </div>
+      <div className={newDecisionInputContainer}>
+        <label htmlFor='fatPreference'>{'Fat Preference'}</label>
+        <input
+          onChange={(e) => props.updateGoalText('fatPreference', e.target.value)}
+          value={props.fatPreference}
+          maxLength={5}
+          type='text'
+          id='fatPreference'
+          className={newDecisionInput}
+          placeholder={props.fatPreference} />
       </div>
       {props.editing === true
           ? <button className={submitDecisionBtn} onClick={submitGoal}> {'Submit'} </button>
