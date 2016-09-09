@@ -27,3 +27,20 @@ export function formatGoal (currentWeight, currentBodyFat, targetWeight, targetB
     targetBodyFat,
   }
 }
+
+export function formatPieData (data) {
+  return [
+    {
+      name: 'Proteins',
+      value: data.proteins,
+    },
+    {
+      name: 'Fats',
+      value: data.fats,
+    },
+    {
+      name: 'Carbs',
+      value: data.carbs,
+    },
+  ]
+}
