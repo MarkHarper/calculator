@@ -5,8 +5,23 @@ import { saveGoalToFirebase } from 'helpers/api'
 
 const UPDATE_GOAL_TEXT = 'UPDATE_GOAL_TEXT'
 export const UPDATE_GOAL = 'UPDATE_GOAL'
+const ACTIVATE_FORM = 'ACTIVATE_FORM'
+const DEACTIVATE_FORM = 'DEACTIVATE_FORM'
+
+export function activateForm () {
+  return {
+    type: ACTIVATE_FORM,
+  }
+}
+
+export function deactivateForm () {
+  return {
+    type: DEACTIVATE_FORM,
+  }
+}
 
 export function updateGoalText (item, itemContent) {
+  console.log(item, itemContent)
   return {
     type: UPDATE_GOAL_TEXT,
     item,
@@ -34,6 +49,7 @@ const initialGoalState = Map({
   currentBodyFat: '',
   targetWeight: '',
   targetBodyFat: '',
+  editing: false,
 })
 
 export default function goal (state = initialGoalState, action) {
@@ -41,6 +57,14 @@ export default function goal (state = initialGoalState, action) {
     case UPDATE_GOAL_TEXT :
       return state.merge({
         [action.item]: action.itemContent,
+      })
+    case ACTIVATE_FORM :
+      return state.merge({
+        'editing': !state.get('editing'),
+      })
+    case DEACTIVATE_FORM :
+      return state.merge({
+        'editing': !state.get('editing'),
       })
     default :
       return state

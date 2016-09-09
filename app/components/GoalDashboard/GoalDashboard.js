@@ -60,6 +60,7 @@ export default function GoalDashboard (props) {
         <LineChart width={600} height={300} data={mockLineData}>
           <Line type='monotone' dataKey='weight' stroke='#8884d8' />
           <Line type='monotone' dataKey='bodyFat' stroke='#8884d8' />
+          <YAxis />
         </LineChart>
       </div>
       <div className={bottomContainer}>

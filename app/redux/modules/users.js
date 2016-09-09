@@ -75,11 +75,11 @@ export function logoutAndUnauth () {
 
 const initialUserState = Map({
   lastUpdated: 0,
-  info: {
+  info: Map({
     name: '',
     uid: '',
     avatar: '',
-  },
+  }),
   goal: Map({
     currentWeight: '',
     currentBodyFat: '',
