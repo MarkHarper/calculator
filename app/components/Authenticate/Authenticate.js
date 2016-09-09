@@ -12,7 +12,7 @@ export default function Authenticate ({isFetchingUser, onAuth, error}) {
   return (
     <div className={centeredContainer}>
       <h1 className={largeHeader}>{'Authenticate'}</h1>
-      <FacebookAuthButton isFetching={isFetchingUser} onAuth={onAuth} />
+      <FacebookAuthButton isFetchingUser={isFetchingUser} onAuth={onAuth} />
       {error ? <p className={errorMsg}>{error}</p> : null}
     </div>
   )

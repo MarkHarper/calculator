@@ -14,23 +14,33 @@ GoalForm.propTypes = {
   exerciseTime: string.isRequired,
   exerciseIntensity: string.isRequired,
   fatPreference: string.isRequired,
+  editableCurrentWeight: string.isRequired,
+  editableCurrentBodyFat: string.isRequired,
+  editableTargetWeight: string.isRequired,
+  editableTargetBodyFat: string.isRequired,
+  editableExerciseTime: string.isRequired,
+  editableExerciseIntensity: string.isRequired,
+  editableFatPreference: string.isRequired,
   user: object.isRequired,
   // isSubmitDisabled: bool.isRequired,
+  activateForm: func.isRequired,
+  deactivateForm: func.isRequired,
   saveGoal: func.isRequired,
   updateGoalText: func.isRequired,
   updateGoal: func.isRequired,
 }
 
 export default function GoalForm (props) {
+  console.log(props)
   function submitGoal () {
     let goal = {
-      currentWeight: props.currentWeight,
-      currentBodyFat: props.currentBodyFat,
-      targetWeight: props.targetWeight,
-      targetBodyFat: props.targetBodyFat,
-      exerciseTime: props.exerciseTime,
-      exerciseIntensity: props.exerciseIntensity,
-      fatPreference: props.fatPreference,
+      currentWeight: props.editableCurrentWeight,
+      currentBodyFat: props.editableCurrentBodyFat,
+      targetWeight: props.editableTargetWeight,
+      targetBodyFat: props.editableTargetBodyFat,
+      exerciseTime: props.editableExerciseTime,
+      exerciseIntensity: props.editableExerciseIntensity,
+      fatPreference: props.editableFatPreference,
     }
     props.updateGoal(props.user.get('uid'), goal)
     props.saveGoal(props.user, formatGoal(goal))
@@ -42,7 +52,7 @@ export default function GoalForm (props) {
         <label htmlFor='currentBodyFat'>{'Current Body Fat'}</label>
         <input
           onChange={(e) => props.updateGoalText('currentBodyFat', e.target.value)}
-          value={props.currentBodyFat}
+          value={props.editableCurrentBodyFat}
           maxLength={5}
           type='text'
           id='currentBodyFat'
@@ -53,7 +63,7 @@ export default function GoalForm (props) {
         <label htmlFor='currentWeight'>{'Current Weight'}</label>
         <input
           onChange={(e) => props.updateGoalText('currentWeight', e.target.value)}
-          value={props.currentWeight}
+          value={props.editableCurrentWeight}
           maxLength={5}
           type='text'
           id='currentWeight'
@@ -64,7 +74,7 @@ export default function GoalForm (props) {
         <label htmlFor='targetBodyFat'>{'Target Body Fat'}</label>
         <input
           onChange={(e) => props.updateGoalText('targetBodyFat', e.target.value)}
-          value={props.targetBodyFat}
+          value={props.editableTargetBodyFat}
           maxLength={5}
           type='text'
           id='targetBodyFat'
@@ -75,7 +85,7 @@ export default function GoalForm (props) {
         <label htmlFor='targetWeight'>{'Target Weight'}</label>
         <input
           onChange={(e) => props.updateGoalText('targetWeight', e.target.value)}
-          value={props.targetWeight}
+          value={props.editableTargetWeight}
           maxLength={5}
           type='text'
           id='targetWeight'
@@ -86,7 +96,7 @@ export default function GoalForm (props) {
         <label htmlFor='exerciseTime'>{'Exercise Time'}</label>
         <input
           onChange={(e) => props.updateGoalText('exerciseTime', e.target.value)}
-          value={props.exerciseTime}
+          value={props.editableExerciseTime}
           maxLength={5}
           type='text'
           id='exerciseTime'
@@ -97,7 +107,7 @@ export default function GoalForm (props) {
         <label htmlFor='exerciseIntensity'>{'Exercise Intensity'}</label>
         <input
           onChange={(e) => props.updateGoalText('exerciseIntensity', e.target.value)}
-          value={props.exerciseIntensity}
+          value={props.editableExerciseIntensity}
           maxLength={5}
           type='text'
           id='exerciseIntensity'
@@ -108,7 +118,7 @@ export default function GoalForm (props) {
         <label htmlFor='fatPreference'>{'Fat Preference'}</label>
         <input
           onChange={(e) => props.updateGoalText('fatPreference', e.target.value)}
-          value={props.fatPreference}
+          value={props.editableFatPreference}
           maxLength={5}
           type='text'
           id='fatPreference'

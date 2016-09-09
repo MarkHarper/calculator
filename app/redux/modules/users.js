@@ -113,7 +113,7 @@ const initialState = Map({
   error: '',
   isAuthed: false,
   authedId: '',
-  isFetchingGoal: false,
+  isFetchingGoal: true,
 })
 
 export default function users (state = initialState, action) {
@@ -146,7 +146,7 @@ export default function users (state = initialState, action) {
         : state.merge({
           isFetchingUser: false,
           error: '',
-          [action.uid]: user(state[action.uid], action),
+          [action.uid]: user(state.get(action.uid), action),
         })
     case REMOVE_FETCHING_USER :
       return state.merge({
@@ -154,7 +154,7 @@ export default function users (state = initialState, action) {
       })
     case UPDATE_GOAL :
       return state.merge({
-        [action.uid]: user(state[action.uid], action),
+        [action.uid]: user(state.get(action.uid), action),
       })
     case FETCHING_USERS_GOALS :
       return state.merge({
