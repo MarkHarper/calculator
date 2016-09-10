@@ -56,7 +56,7 @@ const initialSignupState = Map({
   editableDateOfBirth: '',
   editableCurrentWeight: '',
   editableTargetWeight: '',
-  editableCurrentBodyFate: '',
+  editableCurrentBodyFat: '',
   editableTargetBodyFat: '',
   editableExerciseIntensity: '',
   editableExerciseTime: '',

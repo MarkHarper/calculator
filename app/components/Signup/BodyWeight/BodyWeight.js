@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import {formatGoal} from 'helpers/utils'
 
-BasicInfo.propTypes = {
+BodyWeight.propTypes = {
   navNext: PropTypes.func.isRequired,
   updateSignupText: PropTypes.func.isRequired,
   editableCurrentWeight: PropTypes.string.isRequired,
@@ -15,7 +15,7 @@ BasicInfo.propTypes = {
   fatPreference: PropTypes.string.isRequired,
 }
 
-export default function BasicInfo (props) {
+export default function BodyWeight (props) {
   function submitInfo () {
     let goal = {
       currentWeight: props.editableCurrentWeight,
