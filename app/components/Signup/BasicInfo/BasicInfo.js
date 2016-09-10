@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import {formatUserInfo} from 'helpers/utils'
 
 BasicInfo.propTypes = {
   navNext: PropTypes.func.isRequired,
@@ -24,6 +25,8 @@ export default function BasicInfo (props) {
       email: props.editableEmail,
     }
     props.signupUserInfo(props.user.get('uid'), user, Date.now())
+    props.saveBasicInfo(props.user, formatUserInfo(user.name, user.avatar, user.uid,
+      user.preferredName, user.dateOfBirth, user.email))
     props.navNext()
   }
   return (

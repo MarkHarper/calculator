@@ -1,8 +1,9 @@
 import { Map } from 'immutable'
-
+import {saveBasicInfoToFirebase, saveGoalToFirebase} from 'helpers/api'
 const UPDATE_SIGNUP_TEXT = 'UPDATE_SIGNUP_TEXT'
 export const SIGNUP_USER_INFO = 'SIGNUP_USER_INFO'
 export const SIGNUP_COMPLETE = 'SIGNUP_COMPLETE'
+import {UPDATE_GOAL} from './goals'
 
 export function updateSignupText (item, itemContent) {
   return {
@@ -24,6 +25,21 @@ export function signupUserInfo (uid, user, timestamp) {
 export function completeSignup () {
   return {
     type: SIGNUP_COMPLETE,
+  }
+}
+
+export function updateGoalForSignup (uid, goal) {
+  return {
+    type: UPDATE_GOAL,
+    uid,
+    goal,
+  }
+}
+
+export function saveGoalForSignup (user, goal) {
+  return function (dispatch) {
+    saveGoalToFirebase(user, goal)
+      .catch((error) => console.warn('Error saving goal', error))
   }
 }
 

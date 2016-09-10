@@ -8,6 +8,7 @@ const BasicInfoContainer = React.createClass({
   propTypes: {
     updateSignupText: PropTypes.func.isRequired,
     signupUserInfo: PropTypes.func.isRequired,
+    saveBasicInfo: PropTypes.func.isRequired,
     email: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     user: PropTypes.object.isRequired,
@@ -33,7 +34,8 @@ const BasicInfoContainer = React.createClass({
         editableName={this.props.editableName}
         editableDateOfBirth={this.props.editableDateOfBirth}
         updateSignupText = {this.props.updateSignupText}
-        signupUserInfo = {this.props.signupUserInfo}/>
+        signupUserInfo = {this.props.signupUserInfo}
+        saveBasicInfo={this.props.saveBasicInfo}/>
     )
   },
 })

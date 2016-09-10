@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function DietPreferences (props) {
+export default function BasicInfo (props) {
   return (
     <div>
       <div>
