@@ -59,7 +59,7 @@ const MainContainer = React.createClass({
       ? null
       : <div className={container}>
           <Navigation hasGoal={this.props.hasGoal} isAuthed={this.props.isAuthed}
-            auth={this.handleAuth}/>
+            auth={this.handleAuth} isSignUp={this.props.location.pathname === '/auth'}/>
           <div className={innerContainer}>
             {this.props.children}
           </div>

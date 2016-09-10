@@ -21,7 +21,7 @@ function NavLinks ({isAuthed}) {
     : <noscript />
 }
 
-function ActionLinks ({isAuthed, hasGoal, auth}) {
+function ActionLinks ({isAuthed, hasGoal, auth, isSignUp}) {
   if (isAuthed && hasGoal) {
     return <ul>
         <li><Link to='/logout' className={link}>{'Logout'}</Link></li>
@@ -29,6 +29,10 @@ function ActionLinks ({isAuthed, hasGoal, auth}) {
   } else if (isAuthed) {
     return <ul>
         <li><Link to='/logout' className={link}>{'Logout'}</Link></li>
+      </ul>
+  } else if (isSignUp) {
+    return <ul>
+        <li><Link to='/' className={link}>{'Home'}</Link></li>
       </ul>
   } else {
     return <ul>
@@ -38,13 +42,13 @@ function ActionLinks ({isAuthed, hasGoal, auth}) {
   }
 }
 
-export default function Navigation ({isAuthed, hasGoal, auth}) {
+export default function Navigation ({isAuthed, hasGoal, auth, isSignUp}) {
   return (
     <div className={container}>
       <nav className={navContainer}>
         <NavLinks isAuthed={isAuthed}/>
         <ActionLinks hasGoal={hasGoal} isAuthed={isAuthed}
-          auth={auth}/>
+          auth={auth} isSignUp={isSignUp}/>
       </nav>
     </div>
   )
