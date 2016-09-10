@@ -4,6 +4,7 @@ import { formatUserInfo } from 'helpers/utils'
 import { Map } from 'immutable'
 import { UPDATE_GOAL, FETCHING_USERS_GOALS,
   FETCHING_USERS_GOALS_SUCCESS, FETCHING_USERS_GOALS_ERROR } from './goals'
+import { SIGNUP_COMPLETE, SIGNUP_USER_INFO } from './signup'
 
 const AUTH_USER = 'AUTH_USER'
 const UNAUTH_USER = 'UNAUTH_USER'
@@ -11,8 +12,6 @@ const FETCHING_USER = 'FETCHING_USER'
 const FETCHING_USER_FAILURE = 'FETCHING_USER_FAILURE'
 const FETCHING_USER_SUCCESS = 'FETCHING_USER_SUCCESS'
 const REMOVE_FETCHING_USER = 'REMOVE_FETCHING_USER'
-const UPDATE_USER = 'UPDATE_USER'
-const SIGNUP_COMPLETE = 'SIGNUP_COMPLETE'
 
 export function authUser (uid) {
   return {
@@ -30,21 +29,6 @@ function unauthUser () {
 function fetchingUser () {
   return {
     type: FETCHING_USER,
-  }
-}
-
-export function completeSignup () {
-  return {
-    type: SIGNUP_COMPLETE,
-  }
-}
-
-export function updateUser (uid, user, timestamp) {
-  return {
-    type: UPDATE_USER,
-    uid,
-    user,
-    timestamp,
   }
 }
 
@@ -99,6 +83,7 @@ const initialUserState = Map({
     avatar: '',
     dateOfBirth: '',
     email: '',
+    preferredName: '',
   }),
   goal: Map({
     currentWeight: '',
@@ -122,7 +107,7 @@ function user (state = initialUserState, action) {
       return state.merge({
         goal: action.goal,
       })
-    case UPDATE_USER :
+    case SIGNUP_USER_INFO :
       return state.merge({
         info: action.user,
         lastUpdated: action.timestamp,
@@ -177,7 +162,7 @@ export default function users (state = initialState, action) {
       return state.merge({
         isFetchingUser: false,
       })
-    case UPDATE_USER :
+    case SIGNUP_USER_INFO :
       return state.merge({
         [action.uid]: user(state.get(action.uid), action),
       })
