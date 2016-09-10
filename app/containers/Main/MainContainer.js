@@ -44,7 +44,7 @@ const MainContainer = React.createClass({
         if (this.props.location.pathname === '/' && this.props.signUpComplete === true) {
           this.context.router.replace('results')
         } else if (this.props.location.pathname === '/' && this.props.signUpComplete === false) {
-          this.context.router.replace('basicInfo')
+          this.context.router.replace('basic-info')
         }
       } else {
         this.props.removeFetchingUser()

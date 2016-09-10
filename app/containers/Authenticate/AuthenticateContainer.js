@@ -17,7 +17,13 @@ const AuthenticateContainer = React.createClass({
   handleAuth (e) {
     e.preventDefault()
     this.props.fetchAndHandleAuthedUser()
-      .then(() => this.context.router.replace('results'))
+      .then(() => {
+        if (this.props.signUpComplete === true) {
+          this.context.router.replace('results')
+        } else if (this.props.signUpComplete === false) {
+          this.context.router.replace('signup/basic-info')
+        }
+      })
   },
   render () {
     return (
@@ -32,6 +38,7 @@ const AuthenticateContainer = React.createClass({
 function mapStateToProps ({users}) {
   return {
     isFetchingUser: users.get('isFetchingUser'),
+    signUpComplete: users.get('signUpComplete'),
     error: users.get('error'),
   }
 }
