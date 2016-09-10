@@ -3,9 +3,10 @@ import {Link} from 'react-router'
 import { container, navContainer, link } from './styles.css'
 import { ModalContainer } from 'containers'
 
-Navigation.propTypes = ActionLinks.propTypes = {
+ActionLinks.propTypes = {
   isAuthed: PropTypes.bool.isRequired,
   hasGoal: PropTypes.bool.isRequired,
+  auth: PropTypes.func.isRequired,
 }
 
 NavLinks.propTypes = {
@@ -20,7 +21,7 @@ function NavLinks ({isAuthed}) {
     : <noscript />
 }
 
-function ActionLinks ({isAuthed, hasGoal}) {
+function ActionLinks ({isAuthed, hasGoal, auth}) {
   if (isAuthed && hasGoal) {
     return <ul>
         <li><Link to='/logout' className={link}>{'Logout'}</Link></li>
@@ -32,17 +33,18 @@ function ActionLinks ({isAuthed, hasGoal}) {
   } else {
     return <ul>
         <li><Link to='/' className={link}>{'Home'}</Link></li>
-        <li><Link to='/auth' className={link}>{'Authenticate'}</Link></li>
+        <li><span onClick={auth} className={link}>{'Log In'}</span></li>
       </ul>
   }
 }
 
-export default function Navigation ({isAuthed, hasGoal}) {
+export default function Navigation ({isAuthed, hasGoal, auth}) {
   return (
     <div className={container}>
       <nav className={navContainer}>
         <NavLinks isAuthed={isAuthed}/>
-        <ActionLinks hasGoal={hasGoal} isAuthed={isAuthed}/>
+        <ActionLinks hasGoal={hasGoal} isAuthed={isAuthed}
+          auth={auth}/>
       </nav>
     </div>
   )

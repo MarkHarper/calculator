@@ -27,8 +27,12 @@ const MainContainer = React.createClass({
     isFetchingUser: PropTypes.bool.isRequired,
     authUser: PropTypes.func.isRequired,
     fetchingUserSuccess: PropTypes.func.isRequired,
+    fetchAndHandleAuthedUser: PropTypes.func.isRequired,
     removeFetchingUser: PropTypes.func.isRequired,
     hasGoal: PropTypes.bool.isRequired,
+  },
+  contextTypes: {
+    router: PropTypes.object.isRequired,
   },
   componentDidMount () {
     firebaseAuth().onAuthStateChanged((user) => {
@@ -45,11 +49,17 @@ const MainContainer = React.createClass({
       }
     })
   },
+  handleAuth (e) {
+    e.preventDefault()
+    this.props.fetchAndHandleAuthedUser()
+  },
+  
   render () {
     return this.props.isFetchingUser === true
       ? null
       : <div className={container}>
-          <Navigation hasGoal={this.props.hasGoal} isAuthed={this.props.isAuthed} />
+          <Navigation hasGoal={this.props.hasGoal} isAuthed={this.props.isAuthed}
+            auth={this.handleAuth}/>
           <div className={innerContainer}>
             {this.props.children}
           </div>

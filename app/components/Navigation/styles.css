@@ -32,4 +32,5 @@
 
 .link:hover {
   color: #1877E6;
+  cursor: pointer;
 }
