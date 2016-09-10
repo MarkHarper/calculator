@@ -41,8 +41,10 @@ const MainContainer = React.createClass({
         const userInfo = formatUserInfo(userData.displayName, userData.photoURL, user.uid)
         this.props.authUser(user.uid)
         this.props.fetchingUserSuccess(user.uid, userInfo, Date.now())
-        if (this.props.location.pathname === '/') {
+        if (this.props.location.pathname === '/' && this.props.signUpComplete === true) {
           this.context.router.replace('results')
+        } else if (this.props.location.pathname === '/' && this.props.signUpComplete === false) {
+          this.context.router.replace('basicInfo')
         }
       } else {
         this.props.removeFetchingUser()
@@ -68,6 +70,7 @@ const MainContainer = React.createClass({
 })
 
 export default connect(
-  ({users}) => ({hasGoal: isGoalReal(users), isAuthed: users.get('isAuthed'), isFetchingUser: users.get('isFetchingUser')}),
+  ({users}) => ({hasGoal: isGoalReal(users), isAuthed: users.get('isAuthed'), 
+    isFetchingUser: users.get('isFetchingUser'), signUpComplete: users.get('signUpComplete')}),
   (dispatch) => bindActionCreators(userActionCreators, dispatch)
 )(MainContainer)

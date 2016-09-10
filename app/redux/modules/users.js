@@ -114,6 +114,7 @@ const initialState = Map({
   isAuthed: false,
   authedId: '',
   isFetchingGoal: true,
+  signUpComplete: false,
 })
 
 export default function users (state = initialState, action) {
