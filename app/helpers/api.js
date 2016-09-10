@@ -26,3 +26,8 @@ export function fetchUsersGoal (uid) {
   return ref.child(`users/${uid}/goal`).once('value')
     .then((snapshot) => snapshot.val() || {})
 }
+
+export function saveBasicInfoToFirebase(user, info) {
+  return ref.child(`users/${user.get('uid')}/info`)
+    .set(info)
+}

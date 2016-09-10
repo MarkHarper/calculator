@@ -62,7 +62,7 @@ export function updateGoal (uid, goal) {
 export function saveGoal (user, goal) {
   return function (dispatch) {
     saveGoalToFirebase(user, goal)
-      .catch((error) => console.warn('Error saving checkin', error))
+      .catch((error) => console.warn('Error saving goal', error))
   }
 }
 

@@ -1,8 +1,11 @@
-export function formatUserInfo (name, avatar, uid) {
+export function formatUserInfo (name, avatar, uid, preferredName, dateOfBirth, email) {
   return {
     name,
     avatar,
     uid,
+    preferredName: preferredName ? preferredName : '',
+    dateOfBirth: dateOfBirth ? dateOfBirth : '',
+    email: email ? email : '',
   }
 }
 

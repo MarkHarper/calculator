@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react'
 
 BasicInfo.propTypes = {
   navNext: PropTypes.func.isRequired,
-  updateUser: PropTypes.func.isRequired,
+  signupUserInfo: PropTypes.func.isRequired,
+  updateSignupText: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   email: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -18,11 +19,11 @@ export default function BasicInfo (props) {
       name: props.user.get('name'),
       uid: props.user.get('uid'),
       avatar: props.user.get('avatar'),
-      preferredName: props.name,
-      dateOfBirth: props.dateOfBirth,
-      email: props.email,
+      preferredName: props.editableName,
+      dateOfBirth: props.editableDateOfBirth,
+      email: props.editableEmail,
     }
-    props.updateUser(props.user.get('uid'), user, Date.now())
+    props.signupUserInfo(props.user.get('uid'), user, Date.now())
     props.navNext()
   }
   return (
@@ -30,24 +31,24 @@ export default function BasicInfo (props) {
       <div>
         <label>{'Preferred Name'}</label>
         <input
+          onChange={(e) => props.updateSignupText('editableName', e.target.value)}
           value={props.editableName}
-          maxLength={5}
           type='text'
           placeholder={props.name}/>
       </div>
       <div>
         <label>{'Birthday'}</label>
         <input
+          onChange={(e) => props.updateSignupText('editableDateOfBirth', e.target.value)}
           value={props.editableDateOfBirth}
-          maxLength={5}
           type='text'
           placeholder={props.dateOfBirth}/>
       </div>
       <div>
         <label>{'Email'}</label>
         <input
+          onChange={(e) => props.updateSignupText('editableEmail', e.target.value)}
           value={props.editableEmail}
-          maxLength={5}
           type='text'
           placeholder={props.email}/>
       </div>

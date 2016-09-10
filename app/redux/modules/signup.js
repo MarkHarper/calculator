@@ -1,6 +1,6 @@
 import { Map } from 'immutable'
 
-const UPDATE_SIGNUP_TEXT = 'UPDATE_GOAL_TEXT'
+const UPDATE_SIGNUP_TEXT = 'UPDATE_SIGNUP_TEXT'
 export const SIGNUP_USER_INFO = 'SIGNUP_USER_INFO'
 export const SIGNUP_COMPLETE = 'SIGNUP_COMPLETE'
 
@@ -27,17 +27,24 @@ export function completeSignup () {
   }
 }
 
+export function saveBasicInfo (user, info) {
+  return function (dispatch) {
+    saveBasicInfoToFirebase(user, info)
+      .catch((error) => console.warn('Error saving info', error))
+  }
+}
+
 const initialSignupState = Map({
-  name: '',
-  email: '',
-  dateOfBirth: '',
-  currentWeight: '',
-  targetWeight: '',
-  currentBodyFate: '',
-  targetBodyFat: '',
-  exerciseIntensity: '',
-  exerciseTime: '',
-  fatPreference: '',
+  editableName: '',
+  editableEmail: '',
+  editableDateOfBirth: '',
+  editableCurrentWeight: '',
+  editableTargetWeight: '',
+  editableCurrentBodyFate: '',
+  editableTargetBodyFat: '',
+  editableExerciseIntensity: '',
+  editableExerciseTime: '',
+  editableFatPreference: '',
 })
 
 export default function signup (state = initialSignupState, action) {
