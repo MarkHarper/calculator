@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
-import {LineChart, Line, XAxis, YAxis,
-  CartesianGrid, Pie, PieChart} from 'recharts'
+import {AreaChart, Area, XAxis, YAxis,
+  Pie, PieChart} from 'recharts'
 import {Table} from 'components'
 import {GoalFormContainer} from 'containers'
 import {table, bottomContainer, topContainer} from './styles.css'
@@ -43,11 +43,12 @@ export default function GoalDashboard (props) {
     <div>
       <div className={topContainer}>
         <GoalFormContainer />
-        <LineChart width={600} height={300} data={mockLineData}>
-          <Line type='monotone' dataKey='weight' stroke='#8884d8' />
-          <Line type='monotone' dataKey='bodyFat' stroke='#8884d8' />
+        <AreaChart width={600} height={300} data={mockLineData}>
           <YAxis />
-        </LineChart>
+          <XAxis dataKey='week'/>
+          <Area type='monotone' dataKey='weight' stackId="2" stroke='#8884d8' fill='#8884d8' />
+          <Area type='monotone' dataKey='bodyFat' stackId="1" stroke='#82ca9d' fill='#82ca9d' />
+        </AreaChart>
       </div>
       <div className={bottomContainer}>
         <PieChart width={170} height={170}>
