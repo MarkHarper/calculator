@@ -41,7 +41,7 @@ export default function DietPreferences (props) {
           type='text'
           placeholder={props.fatPreference}/>
       </div>
-      <button onClick={submitInfo}> {'Submit'} </button>
+      <span onClick={submitInfo}> {'Submit'} </span>
     </div>
   )
 }

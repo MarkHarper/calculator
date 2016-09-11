@@ -48,7 +48,7 @@ export default function ExerciseInfo (props) {
           type='text'
           placeholder={props.exerciseIntensity}/>
       </div>
-      <button onClick={submitInfo}> {'Submit and Continue'} </button>
+      <span onClick={submitInfo}> {'Submit and Continue'} </span>
     </div>
   )
 }

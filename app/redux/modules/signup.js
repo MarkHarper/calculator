@@ -53,7 +53,6 @@ export function saveBasicInfo (user, info) {
 const initialSignupState = Map({
   editableName: '',
   editableEmail: '',
-  editableDateOfBirth: '',
   editableCurrentWeight: '',
   editableTargetWeight: '',
   editableCurrentBodyFat: '',
@@ -61,6 +60,7 @@ const initialSignupState = Map({
   editableExerciseIntensity: '',
   editableExerciseTime: '',
   editableFatPreference: '',
+  editableHeight: '',
 })
 
 export default function signup (state = initialSignupState, action) {

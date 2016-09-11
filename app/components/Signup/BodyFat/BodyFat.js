@@ -48,7 +48,7 @@ export default function BodyFat (props) {
           type='text'
           placeholder={props.targetBodyFat}/>
       </div>
-      <button onClick={submitInfo}> {'Submit and Continue'} </button>
+      <span onClick={submitInfo}> {'Submit and Continue'} </span>
     </div>
   )
 }

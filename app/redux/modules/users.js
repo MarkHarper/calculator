@@ -84,6 +84,7 @@ const initialUserState = Map({
     dateOfBirth: '',
     email: '',
     preferredName: '',
+    height: '',
   }),
   goal: Map({
     currentWeight: '',

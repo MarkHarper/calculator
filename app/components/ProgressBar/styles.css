@@ -1,0 +1,13 @@
+.front {
+  border-top: 5px solid #4a90e2;
+  display: block;
+  z-index: 5;
+}
+
+.back {
+  border-top: 5px solid #BDBDBD;
+  display: block;
+  position: relative;
+  top: -5px;
+  z-index: -5;
+}

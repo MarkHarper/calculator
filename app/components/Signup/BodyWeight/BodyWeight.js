@@ -48,7 +48,7 @@ export default function BodyWeight (props) {
           type='text'
           placeholder={props.targetWeight}/>
       </div>
-      <button onClick={submitInfo}> {'Submit and Continue'} </button>
+      <span onClick={submitInfo}> {'Submit and Continue'} </span>
     </div>
   )
 }
