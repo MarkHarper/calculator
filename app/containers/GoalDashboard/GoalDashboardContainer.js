@@ -38,7 +38,6 @@ const GoalDashboardContainer = React.createClass({
 
 function mapStateToProps ({goals, users}) {
   let id = users.get('authedId')
-  console.log(users.getIn([id, 'info', 'height']))
   return {
     user: users.get('authedId') ? users.getIn([id, 'info']) : {},
     height: users.getIn([id, 'info', 'height']),

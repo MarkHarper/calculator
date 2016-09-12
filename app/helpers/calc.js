@@ -20,6 +20,7 @@ export function macroCalc (data) {
     proteins: data.targetWeight * 4,
     carbs: data.targetWeight * 9 * data.fatPreference,
     fats: cal - (data.targetWeight * 4) - (data.targetWeight * 9 * data.fatPreference),
+    cal: cal,
   }
 }
 
