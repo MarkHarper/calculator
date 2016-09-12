@@ -20,12 +20,6 @@ const Table = ({data, positioning}) => {
             <td className={row}>{data.fats}</td>
             <td className={row}>{data.proteins}</td>
           </tr>
-          <tr>
-            <td className={row}>{'Weekly'}</td>
-            <td className={row}>{parseInt(data.carbs * 7)}</td>
-            <td className={row}>{parseInt(data.fats * 7)}</td>
-            <td className={row}>{parseInt(data.proteins * 7)}</td>
-          </tr>
         </tbody>
       </table>
     </div>

@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 import {AreaChart, Area, XAxis, YAxis,
-  Pie, PieChart, Tooltip} from 'recharts'
+  Pie, PieChart, Tooltip, Legend} from 'recharts'
 import {Table} from 'components'
 import {GoalFormContainer} from 'containers'
 import {table, bottomContainer, topContainer} from './styles.css'
@@ -42,7 +42,6 @@ export default function GoalDashboard (props) {
     (
     <div>
       <div className={topContainer}>
-        <GoalFormContainer />
         <AreaChart width={600} height={300} data={mockLineData}
           margin={{top: 10, right: 30, left: 0, bottom: 0}}>
           <Tooltip/>

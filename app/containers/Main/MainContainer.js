@@ -43,8 +43,6 @@ const MainContainer = React.createClass({
         this.props.fetchingUserSuccess(user.uid, userInfo, Date.now())
         if (this.props.location.pathname === '/' && this.props.signUpComplete === true) {
           this.context.router.replace('results')
-        } else if (this.props.location.pathname === '/' && this.props.signUpComplete === false) {
-          this.context.router.replace('basic-info')
         }
       } else {
         this.props.removeFetchingUser()

@@ -16,7 +16,7 @@
   border-radius: 10px;
   background-color: #4a90e2;
   box-shadow: 0 2px 3px 0 rgba(0,0,0,.22);
-  margin: 1em 0;
+  margin: 1em 0 !Important;
 }
 
 .button:hover {

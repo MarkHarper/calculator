@@ -12,14 +12,11 @@ export default function getRoutes (checkAuth, history) {
         <Route path='auth' component={AuthenticateContainer} onEnter={checkAuth} />
         <Route path='results' component={AppsPageContainer} onEnter={checkAuth} />
         <Route path='logout' component={LogoutContainer} />
-        <Route path='signup'>
-          <Route path='basic-info' component={BasicInfoContainer} />
-          <Route path='body-weight' component={BodyWeightContainer} />
-          <Route path='body-fat' component={BodyFatContainer} />
-          <Route path='exercise-info' component={ExerciseInfoContainer} />
-          <Route path='diet-preferences' component={DietPreferencesContainer} />
-          <IndexRoute component={BasicInfoContainer} onEnter={checkAuth} />
-        </Route>
+        <Route path='signup/basic-info' component={BasicInfoContainer} />
+        <Route path='signup/body-weight' component={BodyWeightContainer} />
+        <Route path='signup/body-fat' component={BodyFatContainer} />
+        <Route path='signup/exercise-info' component={ExerciseInfoContainer} />
+        <Route path='signup/diet-preferences' component={DietPreferencesContainer} />
         <IndexRoute component={HomeContainer} onEnter={checkAuth} />
       </Route>
     </Router>
