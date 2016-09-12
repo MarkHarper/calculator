@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import {findDOMNode} from 'react-dom'
 import Form from 'muicss/lib/react/form'
 import Input from 'muicss/lib/react/input'
 import Button from 'muicss/lib/react/button'
@@ -24,6 +25,9 @@ BasicInfo.propTypes = {
 export default function BasicInfo (props) {
   function submitInfo (e) {
     e.preventDefault()
+    if (!e.target.checkValidity()) {
+      return false
+    }
     const user = {
       name: props.user.get('name'),
       uid: props.user.get('uid'),
@@ -42,7 +46,7 @@ export default function BasicInfo (props) {
   }
   const style = {float: 'right'}
   return (
-    <Form className={signupContainer}>
+    <Form onSubmit={submitInfo} className={signupContainer}>
       <ProgressBar container={progressContainer} progress={10} />
       <Input
         label={'Preferred Name'}
@@ -67,7 +71,7 @@ export default function BasicInfo (props) {
         maxLength={3}
         type='text'
         required={true}/>
-      <Button style={style} onClick={submitInfo} variant='raised'>{'Continue'}</Button>
+      <Button style={style} variant='raised'>{'Continue'}</Button>
     </Form>
   )
 }

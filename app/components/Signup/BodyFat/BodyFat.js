@@ -1,5 +1,10 @@
 import React, { PropTypes } from 'react'
+import Form from 'muicss/lib/react/form'
+import Input from 'muicss/lib/react/input'
+import Button from 'muicss/lib/react/button'
 import {formatGoal} from 'helpers/utils'
+import {ProgressBar} from 'components'
+import {signupContainer, submitSignup, progressContainer} from 'sharedStyles/styles.css'
 
 BodyFat.propTypes = {
   navNext: PropTypes.func.isRequired,
@@ -32,23 +37,19 @@ export default function BodyFat (props) {
   }
   return (
     <div>
-      <div>
-        <label>{'Current Body Fat'}</label>
-        <input
+        <Input
+          label={'Current Body Fat'}
           onChange={(e) => props.updateSignupText('editableCurrentBodyFat', e.target.value)}
           value={props.editableCurrentBodyFat}
           type='text'
           placeholder={props.currentBodyFat}/>
-      </div>
-      <div>
-        <label>{'Target Body Fat'}</label>
-        <input
+        <Input
+          label={'Target Body Fat'}
           onChange={(e) => props.updateSignupText('editableTargetBodyFat', e.target.value)}
           value={props.editableTargetBodyFat}
           type='text'
           placeholder={props.targetBodyFat}/>
-      </div>
-      <span onClick={submitInfo}> {'Submit and Continue'} </span>
+      <Button onClick={submitInfo}> {'Submit and Continue'} </Button>
     </div>
   )
 }

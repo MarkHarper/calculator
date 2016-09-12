@@ -39,7 +39,6 @@ const BasicInfoContainer = React.createClass({
     this.context.router.replace('/signup/body-weight')
   },
   render: function () {
-    console.log(this.props)
     return (
       <BasicInfo navNext={this.navNext}
         user={this.props.user}
@@ -59,7 +58,6 @@ const BasicInfoContainer = React.createClass({
 
 function mapStateToProps ({signup, users}) {
   let id = users.get('authedId')
-  console.log(signup)
   return {
     user: users.get('authedId') ? users.getIn([id, 'info']) : {},
     email: users.getIn([id, 'info', 'email']),
