@@ -8,7 +8,15 @@ import {macroCalc, timelineCalc} from 'helpers/calc'
 import {formatPieData} from 'helpers/utils'
 
 GoalDashboard.propTypes = {
-
+  currentWeight: PropTypes.string.isRequired,
+  currentBodyFat: PropTypes.string.isRequired,
+  targetWeight: PropTypes.string.isRequired,
+  targetBodyFat: PropTypes.string.isRequired,
+  exerciseTime: PropTypes.string.isRequired,
+  exerciseIntensity: PropTypes.string.isRequired,
+  fatPreference: PropTypes.string.isRequired,
+  isFetchingGoal: PropTypes.bool.isRequired,
+  height: PropTypes.string.isRequired,
 }
 
 export default function GoalDashboard (props) {
@@ -20,6 +28,7 @@ export default function GoalDashboard (props) {
     targetWeight: parseFloat(props.targetWeight),
     targetBodyFat: parseFloat(props.targetBodyFat),
     fatPreference: parseFloat(props.fatPreference),
+    height: parseFloat(props.height),
   }
   const mockLineData = timelineCalc(mockData)
   const data = macroCalc(mockData)

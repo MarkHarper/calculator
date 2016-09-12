@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { GoalDashboard } from 'components'
 import { connect } from 'react-redux'
 import * as goalActionCreators from 'redux/modules/goals'
 
 const GoalDashboardContainer = React.createClass({
+  propTypes: {
+    currentWeight: PropTypes.string.isRequired,
+    currentBodyFat: PropTypes.string.isRequired,
+    targetWeight: PropTypes.string.isRequired,
+    targetBodyFat: PropTypes.string.isRequired,
+    exerciseTime: PropTypes.string.isRequired,
+    exerciseIntensity: PropTypes.string.isRequired,
+    fatPreference: PropTypes.string.isRequired,
+    isFetchingGoal: PropTypes.bool.isRequired,
+    height: PropTypes.string.isRequired,
+    fetchAndHandleUsersGoals: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+  },
   componentDidMount: function () {
     this.props.fetchAndHandleUsersGoals(this.props.user.get('uid'))
   },
@@ -17,15 +30,18 @@ const GoalDashboardContainer = React.createClass({
         exerciseTime={this.props.exerciseTime}
         exerciseIntensity={this.props.exerciseIntensity}
         fatPreference={this.props.fatPreference}
-        isFetchingGoal={this.props.isFetchingGoal} />
+        isFetchingGoal={this.props.isFetchingGoal}
+        height={this.props.height} />
     )
   },
 })
 
 function mapStateToProps ({goals, users}) {
   let id = users.get('authedId')
+  console.log(users.getIn([id, 'info', 'height']))
   return {
     user: users.get('authedId') ? users.getIn([id, 'info']) : {},
+    height: users.getIn([id, 'info', 'height']),
     currentWeight: users.getIn([id, 'goal', 'currentWeight']),
     currentBodyFat: users.getIn([id, 'goal', 'currentBodyFat']),
     targetWeight: users.getIn([id, 'goal', 'targetWeight']),
