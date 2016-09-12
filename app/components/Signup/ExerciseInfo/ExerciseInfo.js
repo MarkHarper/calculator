@@ -1,5 +1,10 @@
 import React, { PropTypes } from 'react'
 import {formatGoal} from 'helpers/utils'
+import Form from 'muicss/lib/react/form'
+import Input from 'muicss/lib/react/input'
+import Button from 'muicss/lib/react/button'
+import {ProgressBar} from 'components'
+import {signupContainer, progressContainer, requiredHelper} from 'sharedStyles/styles.css'
 
 ExerciseInfo.propTypes = {
   navNext: PropTypes.func.isRequired,
@@ -16,7 +21,11 @@ ExerciseInfo.propTypes = {
 }
 
 export default function ExerciseInfo (props) {
-  function submitInfo () {
+  function submit (e) {
+    e.preventDefault()
+    if (!e.target.checkValidity()) {
+      return false
+    }
     let goal = {
       currentWeight: props.currentWeight,
       targetWeight: props.targetWeight,
@@ -30,26 +39,31 @@ export default function ExerciseInfo (props) {
     props.saveGoalForSignup(props.user, formatGoal(goal))
     props.navNext()
   }
+  const style = {float: 'right'}
   return (
-    <div>
-      <div>
-        <label>{'Weekly Exercise Time'}</label>
-        <input
-          onChange={(e) => props.updateSignupText('editableExerciseTime', e.target.value)}
-          value={props.editableExerciseTime}
-          type='text'
-          placeholder={props.exerciseTime}/>
-      </div>
-      <div>
-        <label>{'Exercise Intensity'}</label>
-        <input
-          onChange={(e) => props.updateSignupText('editableExerciseIntensity', e.target.value)}
-          value={props.editableExerciseIntensity}
-          type='text'
-          placeholder={props.exerciseIntensity}/>
-      </div>
-      <span onClick={submitInfo}> {'Submit and Continue'} </span>
-    </div>
+    <Form onSubmit={submit} className={signupContainer}>
+      <ProgressBar container={progressContainer} progress={80} />
+      <Input
+        label={'Weekly Exercise Time (Hours)*'}
+        onChange={(e) => props.updateSignupText('editableExerciseTime', e.target.value)}
+        value={props.editableExerciseTime}
+        floatingLabel={true}
+        maxLength={2}
+        type='text'
+        placeholder={props.exerciseTime}
+        required={true}/>
+      <Input
+        label={'Exercise Intensity (1-3)*'}
+        onChange={(e) => props.updateSignupText('editableExerciseIntensity', e.target.value)}
+        value={props.editableExerciseIntensity}
+        floatingLabel={true}
+        maxLength={2}
+        type='text'
+        placeholder={props.exerciseIntensity}
+        required={true}/>
+      <Button style={style} variant='raised'>{'Continue'}</Button>
+      <span className={requiredHelper}>{'* indicates required field'}</span>
+    </Form>
   )
 }
 

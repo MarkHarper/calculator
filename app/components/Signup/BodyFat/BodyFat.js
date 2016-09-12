@@ -4,7 +4,7 @@ import Input from 'muicss/lib/react/input'
 import Button from 'muicss/lib/react/button'
 import {formatGoal} from 'helpers/utils'
 import {ProgressBar} from 'components'
-import {signupContainer, submitSignup, progressContainer} from 'sharedStyles/styles.css'
+import {signupContainer, progressContainer} from 'sharedStyles/styles.css'
 
 BodyFat.propTypes = {
   navNext: PropTypes.func.isRequired,
@@ -21,7 +21,11 @@ BodyFat.propTypes = {
 }
 
 export default function BodyFat (props) {
-  function submitInfo () {
+  function submit (e) {
+    e.preventDefault()
+    if (!e.target.checkValidity()) {
+      return false
+    }
     let goal = {
       currentWeight: props.currentWeight,
       targetWeight: props.targetWeight,
@@ -35,22 +39,28 @@ export default function BodyFat (props) {
     props.saveGoalForSignup(props.user, formatGoal(goal))
     props.navNext()
   }
+  const style = {float: 'right'}
   return (
-    <div>
-        <Input
-          label={'Current Body Fat'}
-          onChange={(e) => props.updateSignupText('editableCurrentBodyFat', e.target.value)}
-          value={props.editableCurrentBodyFat}
-          type='text'
-          placeholder={props.currentBodyFat}/>
-        <Input
-          label={'Target Body Fat'}
-          onChange={(e) => props.updateSignupText('editableTargetBodyFat', e.target.value)}
-          value={props.editableTargetBodyFat}
-          type='text'
-          placeholder={props.targetBodyFat}/>
-      <Button onClick={submitInfo}> {'Submit and Continue'} </Button>
-    </div>
+    <Form onSubmit={submit} className={signupContainer}>
+      <ProgressBar container={progressContainer} progress={60} />
+      <Input
+        label={'Current Body Fat (%)'}
+        onChange={(e) => props.updateSignupText('editableCurrentBodyFat', e.target.value)}
+        floatingLabel={true}
+        value={props.editableCurrentBodyFat}
+        maxLength={2}
+        type='text'
+        placeholder={props.currentBodyFat}/>
+      <Input
+        label={'Target Body Fat (%)'}
+        onChange={(e) => props.updateSignupText('editableTargetBodyFat', e.target.value)}
+        floatingLabel={true}
+        value={props.editableTargetBodyFat}
+        maxLength={2}
+        type='text'
+        placeholder={props.targetBodyFat}/>
+      <Button style={style} variant='raised'> {'Continue'} </Button>
+    </Form>
   )
 }
 

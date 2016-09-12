@@ -1,5 +1,10 @@
 import React, { PropTypes } from 'react'
 import {formatGoal} from 'helpers/utils'
+import Form from 'muicss/lib/react/form'
+import Input from 'muicss/lib/react/input'
+import Button from 'muicss/lib/react/button'
+import {ProgressBar} from 'components'
+import {signupContainer, progressContainer, requiredHelper} from 'sharedStyles/styles.css'
 
 BodyWeight.propTypes = {
   navNext: PropTypes.func.isRequired,
@@ -16,7 +21,11 @@ BodyWeight.propTypes = {
 }
 
 export default function BodyWeight (props) {
-  function submitInfo () {
+  function submit (e) {
+    e.preventDefault()
+    if (!e.target.checkValidity()) {
+      return false
+    }
     let goal = {
       currentWeight: props.editableCurrentWeight,
       targetWeight: props.editableTargetWeight,
@@ -30,26 +39,31 @@ export default function BodyWeight (props) {
     props.saveGoalForSignup(props.user, formatGoal(goal))
     props.navNext()
   }
+  const style = {float: 'right'}
   return (
-    <div>
-      <div>
-        <label>{'Current Weight'}</label>
-        <input
-          onChange={(e) => props.updateSignupText('editableCurrentWeight', e.target.value)}
-          value={props.editableCurrentWeight}
-          type='text'
-          placeholder={props.currentWeight}/>
-      </div>
-      <div>
-        <label>{'Target Weight'}</label>
-        <input
-          onChange={(e) => props.updateSignupText('editableTargetWeight', e.target.value)}
-          value={props.editableTargetWeight}
-          type='text'
-          placeholder={props.targetWeight}/>
-      </div>
-      <span onClick={submitInfo}> {'Submit and Continue'} </span>
-    </div>
+    <Form onSubmit={submit} className={signupContainer}>
+      <ProgressBar container={progressContainer} progress={40} />
+      <Input
+        label={'Current Weight (lbs)*'}
+        onChange={(e) => props.updateSignupText('editableCurrentWeight', e.target.value)}
+        value={props.editableCurrentWeight}
+        floatingLabel={true}
+        maxLength={3}
+        type='text'
+        placeholder={props.currentWeight}
+        required={true}/>
+      <Input
+        label={'Target Weight (lbs)*'}
+        onChange={(e) => props.updateSignupText('editableTargetWeight', e.target.value)}
+        value={props.editableTargetWeight}
+        floatingLabel={true}
+        maxLength={3}
+        type='text'
+        placeholder={props.targetWeight}
+        required={true}/>
+      <Button style={style} variant='raised'> {'Continue'} </Button>
+      <span className={requiredHelper}>{'* indicates required field'}</span>
+    </Form>
   )
 }
 

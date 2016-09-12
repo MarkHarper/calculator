@@ -1,5 +1,10 @@
 import React, { PropTypes } from 'react'
 import {formatGoal} from 'helpers/utils'
+import Form from 'muicss/lib/react/form'
+import Input from 'muicss/lib/react/input'
+import Button from 'muicss/lib/react/button'
+import {ProgressBar} from 'components'
+import {signupContainer, progressContainer, requiredHelper} from 'sharedStyles/styles.css'
 
 DietPreferences.propTypes = {
   navNext: PropTypes.func.isRequired,
@@ -16,7 +21,11 @@ DietPreferences.propTypes = {
 }
 
 export default function DietPreferences (props) {
-  function submitInfo () {
+  function submit (e) {
+    e.preventDefault()
+    if (!e.target.checkValidity()) {
+      return false
+    }
     let goal = {
       currentWeight: props.currentWeight,
       targetWeight: props.targetWeight,
@@ -31,18 +40,22 @@ export default function DietPreferences (props) {
     props.completeSignup()
     props.navNext()
   }
+  const style = {float: 'right'}
   return (
-    <div>
-      <div>
-        <label>{'Dietary Fat Preference'}</label>
-        <input
-          onChange={(e) => props.updateSignupText('editableFatPreference', e.target.value)}
-          value={props.editableFatPreference}
-          type='text'
-          placeholder={props.fatPreference}/>
-      </div>
-      <span onClick={submitInfo}> {'Submit'} </span>
-    </div>
+    <Form onSubmit={submit} className={signupContainer}>
+      <ProgressBar container={progressContainer} progress={90} />
+      <Input
+        label={'Dietary Fat Preference (1-3)*'}
+        onChange={(e) => props.updateSignupText('editableFatPreference', e.target.value)}
+        value={props.editableFatPreference}
+        floatingLabel={true}
+        maxLength={4}
+        type='text'
+        placeholder={props.fatPreference}
+        required={true}/>
+      <Button style={style} variant='raised'>{'Continue'}</Button>
+      <span className={requiredHelper}>{'* indicates required field'}</span>
+    </Form>
   )
 }
 

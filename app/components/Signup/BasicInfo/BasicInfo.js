@@ -1,11 +1,10 @@
 import React, { PropTypes } from 'react'
-import {findDOMNode} from 'react-dom'
 import Form from 'muicss/lib/react/form'
 import Input from 'muicss/lib/react/input'
 import Button from 'muicss/lib/react/button'
 import {formatUserInfo} from 'helpers/utils'
 import {ProgressBar} from 'components'
-import {signupContainer, submitSignup, progressContainer} from 'sharedStyles/styles.css'
+import {signupContainer, progressContainer, requiredHelper} from 'sharedStyles/styles.css'
 
 BasicInfo.propTypes = {
   navNext: PropTypes.func.isRequired,
@@ -23,7 +22,7 @@ BasicInfo.propTypes = {
 }
 
 export default function BasicInfo (props) {
-  function submitInfo (e) {
+  function submit (e) {
     e.preventDefault()
     if (!e.target.checkValidity()) {
       return false
@@ -36,9 +35,6 @@ export default function BasicInfo (props) {
       email: props.editableEmail,
       height: props.editableHeight,
     }
-    if (props.validateInputs(user) === false) {
-      return
-    }
     props.signupUserInfo(props.user.get('uid'), user, Date.now())
     props.saveBasicInfo(props.user, formatUserInfo(user.name, user.avatar, user.uid,
       user.preferredName, user.email, user.height))
@@ -46,10 +42,10 @@ export default function BasicInfo (props) {
   }
   const style = {float: 'right'}
   return (
-    <Form onSubmit={submitInfo} className={signupContainer}>
+    <Form onSubmit={submit} className={signupContainer}>
       <ProgressBar container={progressContainer} progress={10} />
       <Input
-        label={'Preferred Name'}
+        label={'Preferred Name*'}
         onChange={(e) => props.updateSignupText('editableName', e.target.value)}
         floatingLabel={true}
         value={props.editableName}
@@ -57,14 +53,14 @@ export default function BasicInfo (props) {
         type='text'
         required={true}/>
       <Input
-        label={'Email'}
+        label={'Email*'}
         onChange={(e) => props.updateSignupText('editableEmail', e.target.value)}
         floatingLabel={true}
         value={props.editableEmail}
         type='email'
         required={true}/>
       <Input
-        label={'Height (Inches)'}
+        label={'Height (Inches)*'}
         onChange={(e) => props.updateSignupText('editableHeight', e.target.value)}
         floatingLabel={true}
         value={props.editableHeight}
@@ -72,6 +68,7 @@ export default function BasicInfo (props) {
         type='text'
         required={true}/>
       <Button style={style} variant='raised'>{'Continue'}</Button>
+      <span className={requiredHelper}>{'* indicates required field'}</span>
     </Form>
   )
 }

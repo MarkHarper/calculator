@@ -87,3 +87,11 @@ html, body {
 .submitSignup {
   cursor: pointer
 }
+
+.requiredHelper {
+  font-weight: 400;
+  font-family: Arial, Verdana, Tahoma;
+  font-size: 12px;
+  line-height: 16px;
+  color: #BDBDBD;
+}
