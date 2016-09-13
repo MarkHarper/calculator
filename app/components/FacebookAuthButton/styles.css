@@ -12,14 +12,20 @@
   font-size: 25px;
   text-align: center;
   font-weight: 100;
-  padding: 0.5em 1em;
-  border-radius: 10px;
+  padding: 0.4em 0.7em;
+  border-radius: 2px;
   background-color: #4a90e2;
   box-shadow: 0 2px 3px 0 rgba(0,0,0,.22);
   margin: 1em 0 !Important;
 }
 
 .button:hover {
+  box-shadow: rgba(0, 0, 0, 0.239216) 0px 4px 8px 0px;
+  text-decoration: none;
+  color: white;
+}
+
+.button:focus {
   box-shadow: rgba(0, 0, 0, 0.239216) 0px 4px 8px 0px;
   text-decoration: none;
   color: white;

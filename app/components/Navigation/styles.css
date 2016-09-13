@@ -36,3 +36,9 @@
   cursor: pointer;
   text-decoration: none;
 }
+
+.link:focus {
+  color: #1877E6;
+  cursor: pointer;
+  text-decoration: none;
+}
