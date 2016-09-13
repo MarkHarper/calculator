@@ -48,6 +48,12 @@ export default function GoalDashboard (props) {
    ? <div>{'loading'}</div>
    : (
     <div className={outerContainer}>
+      <Panel className={caloriesContainer}>
+        <div className={tileTitle}>{'TIME TO GOAL'}</div>
+        <hr className={lineBreak}/>
+        <span className={dailyCals}>{parseInt(mockLineData.length * 7)}</span>
+        <span className={calUnits}>{'Days'}</span>
+      </Panel>
       <Panel className={topContainer}>
         <AreaChart width={600} height={300} data={mockLineData}
           margin={{top: 10, right: 30, left: 0, bottom: 0}}>
