@@ -9,11 +9,15 @@
 .bottomContainer {
   display: flex;
   justify-content: space-between;
+  display: flex;
+  flex: 3 67%;
+  margin-left: 4%;
 }
 
 .topContainer {
   display: flex;
   justify-content: space-between;
+  flex: 1 100%;
 }
 
 .outerContainer {
@@ -21,4 +25,29 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.caloriesContainer {
+  display: flex;
+  flex: 1 20%;
+  flex-direction: column;
+  padding-bottom: 0;
+}
+
+.dailyCals {
+  font-size: 3em;
+  width: 100%;
+  text-align: center;
+  line-height: 1em;
+  margin: 0.5em 0 0;
+}
+
+.calUnits {
+  width: 50%;
+  text-align: right;
+  margin: 0 auto;
+}
+
+.tileTitle {
+  font-size: 1.1em;
 }

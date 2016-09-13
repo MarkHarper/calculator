@@ -1,12 +1,14 @@
 import React, {PropTypes} from 'react'
 import {AreaChart, Area, XAxis, YAxis,
-  Pie, PieChart, Tooltip, Legend} from 'recharts'
+  Pie, PieChart, Tooltip, Legend, Cell} from 'recharts'
 import {Table} from 'components'
-import {GoalFormContainer} from 'containers'
-import {table, bottomContainer, topContainer, outerContainer} from './styles.css'
+import {table, bottomContainer, topContainer,
+  outerContainer, caloriesContainer, dailyCals,
+  calUnits, tileTitle} from './styles.css'
 import Panel from 'muicss/lib/react/panel'
 import {macroCalc, timelineCalc} from 'helpers/calc'
 import {formatPieData} from 'helpers/utils'
+import {lineBreak} from 'sharedStyles/styles.css'
 
 GoalDashboard.propTypes = {
   currentWeight: PropTypes.string.isRequired,
@@ -21,7 +23,7 @@ GoalDashboard.propTypes = {
 }
 
 export default function GoalDashboard (props) {
-  const mockData = {
+  const stats = {
     currentWeight: parseFloat(props.currentWeight),
     currentBodyFat: parseFloat(props.currentBodyFat),
     exerciseTime: parseFloat(props.exerciseTime),
@@ -31,13 +33,20 @@ export default function GoalDashboard (props) {
     fatPreference: parseFloat(props.fatPreference),
     height: parseFloat(props.height),
   }
-  const mockLineData = timelineCalc(mockData)
-  const data = macroCalc(mockData)
+  const mockLineData = timelineCalc(stats)
+  const data = macroCalc(stats)
   const mockPieData = formatPieData(data)
-
-  return props.isFetchingGoal ? 
-    <div>{'loading'}</div> :
-    (
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28']
+  let bodyFatArea
+  if (stats.currentBodyFat) {
+    bodyFatArea = <Area type='monotone' dataKey='bodyFat' stackId='1'
+      stroke='#82ca9d' fill='#82ca9d'/>
+  } else {
+    bodyFatArea = null
+  }
+  return props.isFetchingGoal
+   ? <div>{'loading'}</div>
+   : (
     <div className={outerContainer}>
       <Panel className={topContainer}>
         <AreaChart width={600} height={300} data={mockLineData}
@@ -45,19 +54,25 @@ export default function GoalDashboard (props) {
           <Tooltip/>
           <YAxis />
           <XAxis dataKey='week'/>
-          <Area type='monotone' dataKey='weight' stackId="2" stroke='#8884d8' fill='#8884d8' />
-          <Area type='monotone' dataKey='bodyFat' stackId="1" stroke='#82ca9d' fill='#82ca9d' />
+          <Area type='monotone' dataKey='weight' stackId='2'
+            stroke='#8884d8' fill='#8884d8'/>
+          {bodyFatArea}
         </AreaChart>
       </Panel>
-      <Panel>
-        <span>{data.cal + ' Kcal Daily'}</span>
+      <Panel className={caloriesContainer}>
+        <div className={tileTitle}>{'DAILY CALORIES'}</div>
+        <hr className={lineBreak}/>
+        <span className={dailyCals}>{data.cal}</span>
+        <span className={calUnits}>{'Kcal'}</span>
       </Panel>
       <Panel className={bottomContainer}>
         <PieChart width={170} height={170}>
           <Pie data={mockPieData} cx={85} cy={85}
             outerRadius={85}
             fill='#82ca9d'
-            labelLine={false}/>
+            labelLine={false}>
+            {mockPieData.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)}
+          </Pie>
         </PieChart>
         <Table data={data} positioning={table}/>
       </Panel>

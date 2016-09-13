@@ -15,11 +15,11 @@ BMI Formula
 */
 
 export function macroCalc (data) {
-  let cal = data.targetWeight * (data.exerciseTime + data.exerciseIntensity)
+  let cal = parseInt(data.targetWeight * (data.exerciseTime + data.exerciseIntensity))
   return {
-    proteins: data.targetWeight * 4,
-    carbs: data.targetWeight * 9 * data.fatPreference,
-    fats: cal - (data.targetWeight * 4) - (data.targetWeight * 9 * data.fatPreference),
+    proteins: parseInt(data.targetWeight * 4),
+    fats: parseInt(data.targetWeight * 9 * data.fatPreference),
+    carbs: parseInt(cal - (data.targetWeight * 4) - (data.targetWeight * 9 * data.fatPreference)),
     cal: cal,
   }
 }
@@ -64,8 +64,8 @@ export function timelineCalc (data) {
       cBW = (cLM * 100) / (100 - (100 * cBF))
       week = week + 1
       dataArray.push({
-        weight: cBW,
-        bodyFat: cBF * 100,
+        weight: parseInt(cBW),
+        bodyFat: parseInt(cBF * 100),
         week: week,
       })
     }
@@ -82,7 +82,7 @@ export function timelineCalc (data) {
         cBW = cBW - lbsPerWeek
         week = week + 1
         dataArray.push({
-          weight: cBW,
+          weight: parseInt(cBW),
           bodyFat: 0,
           week: week,
         })
@@ -96,7 +96,7 @@ export function timelineCalc (data) {
         cBW = cBW + lbsPerWeek
         week = week + 1
         dataArray.push({
-          weight: cBW,
+          weight: parseInt(cBW),
           bodyFat: 0,
           week: week,
         })
@@ -105,7 +105,7 @@ export function timelineCalc (data) {
     } else {
       let dataArray = []
       dataArray.push({
-        weight: data.currentWeight,
+        weight: parseInt(data.currentWeight),
         bodyFat: 0,
         week: 1,
       })
