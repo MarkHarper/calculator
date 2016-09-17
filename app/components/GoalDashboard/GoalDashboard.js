@@ -48,40 +48,55 @@ export default function GoalDashboard (props) {
    ? <div>{'loading'}</div>
    : (
     <div className={outerContainer}>
-      <Panel className={caloriesContainer}>
-        <div className={tileTitle}>{'TIME TO GOAL'}</div>
-        <hr className={lineBreak}/>
-        <span className={dailyCals}>{parseInt(mockLineData.length * 7)}</span>
-        <span className={calUnits}>{'Days'}</span>
-      </Panel>
-      <Panel className={topContainer}>
-        <AreaChart width={600} height={300} data={mockLineData}
-          margin={{top: 10, right: 30, left: 0, bottom: 0}}>
-          <Tooltip/>
-          <YAxis />
-          <XAxis dataKey='week'/>
-          <Area type='monotone' dataKey='weight' stackId='2'
-            stroke='#8884d8' fill='#8884d8'/>
-          {bodyFatArea}
-        </AreaChart>
-      </Panel>
-      <Panel className={caloriesContainer}>
-        <div className={tileTitle}>{'DAILY CALORIES'}</div>
-        <hr className={lineBreak}/>
-        <span className={dailyCals}>{data.cal}</span>
-        <span className={calUnits}>{'Kcal'}</span>
-      </Panel>
-      <Panel className={bottomContainer}>
-        <PieChart width={170} height={170}>
-          <Pie data={mockPieData} cx={85} cy={85}
-            outerRadius={85}
-            fill='#82ca9d'
-            labelLine={false}>
-            {mockPieData.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)}
-          </Pie>
-        </PieChart>
-        <Table data={data} positioning={table}/>
-      </Panel>
+      <div>
+        <Panel className={topContainer}>
+          <AreaChart width={600} height={200} data={mockLineData}
+            margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+            <Tooltip/>
+            <YAxis />
+            <XAxis dataKey='week'/>
+            <Area type='monotone' dataKey='weight' stackId='2'
+              stroke='#8884d8' fill='#8884d8'/>
+            {bodyFatArea}
+          </AreaChart>
+        </Panel>
+        <Panel className={bottomContainer}>
+          <PieChart width={170} height={170}>
+            <Pie data={mockPieData} cx={85} cy={85}
+              outerRadius={85}
+              fill='#82ca9d'
+              labelLine={false}>
+              {mockPieData.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)}
+            </Pie>
+          </PieChart>
+          <Table data={data} positioning={table}/>
+        </Panel>
+      </div>
+      <div>
+        <Panel className={caloriesContainer}>
+          <div className={tileTitle}>{'TIME TO GOAL'}</div>
+          <hr className={lineBreak}/>
+          <span className={dailyCals}>{parseInt(mockLineData.length * 7)}</span>
+          <span className={calUnits}>{'Days'}</span>
+        </Panel>
+        <Panel className={caloriesContainer}>
+          <div className={tileTitle}>{'DAILY CALORIES'}</div>
+          <hr className={lineBreak}/>
+          <span className={dailyCals}>{data.cal}</span>
+          <span className={calUnits}>{'Kcal'}</span>
+        </Panel>
+        <Panel className={bottomContainer}>
+          <PieChart width={170} height={170}>
+            <Pie data={mockPieData} cx={85} cy={85}
+              outerRadius={85}
+              fill='#82ca9d'
+              labelLine={false}>
+              {mockPieData.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)}
+            </Pie>
+          </PieChart>
+          <Table data={data} positioning={table}/>
+        </Panel>
+      </div>
     </div>
   )
 }
