@@ -4,7 +4,7 @@ import {AreaChart, Area, XAxis, YAxis,
 import {Table} from 'components'
 import {table, bottomContainer, topContainer,
   outerContainer, caloriesContainer, dailyCals,
-  calUnits, tileTitle} from './styles.css'
+  calUnits, tileTitle, areaChart} from './styles.css'
 import Panel from 'muicss/lib/react/panel'
 import {macroCalc, timelineCalc} from 'helpers/calc'
 import {formatPieData} from 'helpers/utils'
@@ -48,8 +48,8 @@ export default function GoalDashboard (props) {
    ? <div>{'loading'}</div>
    : (
     <div className={outerContainer}>
-      <div>
-        <Panel className={topContainer}>
+      <div className={topContainer}>
+        <Panel className={areaChart}>
           <AreaChart width={600} height={200} data={mockLineData}
             margin={{top: 10, right: 30, left: 0, bottom: 0}}>
             <Tooltip/>
@@ -69,7 +69,7 @@ export default function GoalDashboard (props) {
               {mockPieData.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)}
             </Pie>
           </PieChart>
-          <Table data={data} positioning={table}/>
+          <Table data={data} positioning={table} grams={true}/>
         </Panel>
       </div>
       <div>
@@ -94,7 +94,7 @@ export default function GoalDashboard (props) {
               {mockPieData.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)}
             </Pie>
           </PieChart>
-          <Table data={data} positioning={table}/>
+          <Table data={data} positioning={table} grams={false}/>
         </Panel>
       </div>
     </div>

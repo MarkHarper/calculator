@@ -14,10 +14,16 @@
   margin-left: 4%;
 }
 
-.topContainer {
+.areaChart {
   display: flex;
   justify-content: space-between;
   flex: 1 100%;
+}
+
+.topContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 .outerContainer {

@@ -4,6 +4,7 @@ import { Navigation } from 'components'
 import { connect } from 'react-redux'
 import { firebaseAuth } from 'config/constants'
 import { formatUserInfo } from 'helpers/utils'
+import { fetchUser } from 'helpers/api'
 import { container, innerContainer } from './styles.css'
 import * as userActionCreators from 'redux/modules/users'
 
@@ -30,6 +31,8 @@ const MainContainer = React.createClass({
     fetchAndHandleAuthedUser: PropTypes.func.isRequired,
     removeFetchingUser: PropTypes.func.isRequired,
     hasGoal: PropTypes.bool.isRequired,
+    signUpComplete: PropTypes.bool.isRequired,
+    location: PropTypes.object.isRequired,
   },
   contextTypes: {
     router: PropTypes.object.isRequired,
@@ -37,13 +40,30 @@ const MainContainer = React.createClass({
   componentDidMount () {
     firebaseAuth().onAuthStateChanged((user) => {
       if (user) {
-        const userData = user.providerData[0]
-        const userInfo = formatUserInfo(userData.displayName, userData.photoURL, user.uid)
         this.props.authUser(user.uid)
-        this.props.fetchingUserSuccess(user.uid, userInfo, Date.now())
-        if (this.props.location.pathname === '/' && this.props.signUpComplete === true) {
-          this.context.router.replace('results')
-        }
+        fetchUser(user.uid)
+          .then((user) => {
+            const userInfo = formatUserInfo(user.info.name, user.info.avatar, user.info.uid,
+              user.info.preferredName, user.info.email, user.info.height)
+            this.props.fetchingUserSuccess(user.info.uid, userInfo, Date.now())
+            if (this.props.location.pathname === '/' && this.props.signUpComplete === true) {
+              this.context.router.replace('results')
+            } else if (this.props.location.pathname === '/' && this.props.signUpComplete === false) {
+              let goal = user.goal
+              if (!userInfo.preferredName || !userInfo.email || !userInfo.height) {
+                this.context.router.replace('signup/basic-info')
+              } else if (!goal.currentWeight || !goal.targetWeight) {
+                this.context.router.replace('signup/body-weight')
+              } else if (!goal.exerciseTime || !goal.exerciseIntensity) {
+                this.context.router.replace('signup/exercise-info')
+              } else if (!goal.fatPreference) {
+                this.context.router.replace('signup/diet-preferences')
+              } else {
+                
+                this.context.router.replace('results')
+              }
+            }
+          })
       } else {
         this.props.removeFetchingUser()
       }
