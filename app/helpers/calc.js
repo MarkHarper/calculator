@@ -64,8 +64,8 @@ export function timelineCalc (data) {
       cBW = (cLM * 100) / (100 - (100 * cBF))
       week = week + 1
       dataArray.push({
-        weight: parseInt(cBW),
-        bodyFat: parseInt(cBF * 100),
+        weight: cBW,
+        bodyFat: cBF * 100,
         week: week,
       })
     }

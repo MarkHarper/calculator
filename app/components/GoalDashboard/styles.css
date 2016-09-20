@@ -1,5 +1,6 @@
 .table {
   width: 75%;
+  margin: 0 auto;
 }
 
 .pie {
@@ -7,11 +8,9 @@
 }
 
 .bottomContainer {
-  display: flex;
   justify-content: space-between;
   display: flex;
-  flex: 3 67%;
-  margin-left: 4%;
+  width: 100%;
 }
 
 .areaChart {
@@ -23,7 +22,7 @@
 .topContainer {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
 }
 
 .outerContainer {
@@ -35,9 +34,9 @@
 
 .caloriesContainer {
   display: flex;
-  flex: 1 20%;
   flex-direction: column;
   padding-bottom: 0;
+  flex: 1 30%;
 }
 
 .dailyCals {
@@ -56,4 +55,27 @@
 
 .tileTitle {
   font-size: 1.1em;
+}
+
+.vizContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.kCalsPie {
+  flex: 2 35%;
+  margin: 0 2% 20px;
+}
+
+.gramsPie {
+  flex: 1;
+}
+
+.pathToGoal {
+  flex: 1;
+  margin-right: 2%;
+}
+
+.pieTop {
+  margin: 0 auto;
 }

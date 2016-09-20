@@ -34,8 +34,23 @@ export function formatGoal (data) {
   }
 }
 
-export function formatPieData (data) {
-  return [
+export function formatPieData (data, kcals) {
+  return kcals === true
+  ? [
+    {
+      name: 'Proteins',
+      value: data.proteins * 4,
+    },
+    {
+      name: 'Fats',
+      value: data.fats * 9,
+    },
+    {
+      name: 'Carbs',
+      value: data.carbs * 4,
+    },
+  ]
+  : [
     {
       name: 'Proteins',
       value: data.proteins,

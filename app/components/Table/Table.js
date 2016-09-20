@@ -6,11 +6,6 @@ const Table = ({data, positioning, grams}) => {
   ? (
     <div className={positioning}>
       <table className={table}>
-        <thead>
-          <tr>
-            <th className={header}></th>
-          </tr>
-        </thead>
         <tbody>
           <tr>
             <td className={row}>{'Carbs'}</td>
@@ -30,11 +25,6 @@ const Table = ({data, positioning, grams}) => {
   )
   : <div className={positioning}>
       <table className={table}>
-        <thead>
-          <tr>
-            <th className={header}></th>
-          </tr>
-        </thead>
         <tbody>
           <tr>
             <td className={row}>{'Carbs'}</td>
