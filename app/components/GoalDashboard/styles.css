@@ -23,6 +23,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin: 10px 0;
 }
 
 .outerContainer {
@@ -36,7 +37,7 @@
   display: flex;
   flex-direction: column;
   padding-bottom: 0;
-  flex: 1 30%;
+  flex: 1 10%;
 }
 
 .dailyCals {
@@ -44,11 +45,10 @@
   width: 100%;
   text-align: center;
   line-height: 1em;
-  margin: 0.5em 0 0;
+  margin: 0.8em 0 0;
 }
 
 .calUnits {
-  width: 50%;
   text-align: right;
   margin: 0 auto;
 }

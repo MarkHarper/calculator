@@ -54,8 +54,8 @@ export default function GoalDashboard (props) {
         <Panel className={pathToGoal}>
           <div className={tileTitle}>{'PATH TO GOAL'}</div>
           <hr className={lineBreak}/>
-          <div className={vizContainer}>
-            <AreaChart width={600} height={200} data={mockLineData}
+          <div className={vizContainer} style={{marginTop: '1.5em'}}>
+            <AreaChart width={600} height={250} data={mockLineData}
               margin={{top: 10, right: 30, left: 0, bottom: 0}}>
               <Tooltip/>
               <YAxis domain={['dataMin - 2', 'dataMax + 2']} />
@@ -87,13 +87,14 @@ export default function GoalDashboard (props) {
           <div className={tileTitle}>{'TIME TO GOAL'}</div>
           <hr className={lineBreak}/>
           <span className={dailyCals}>{parseInt(mockLineData.length * 7)}</span>
-          <span className={calUnits}>{'Days'}</span>
+          <span className={calUnits} style={{width: '45%'}}>{'Days'}</span>
         </Panel>
         <Panel className={kCalsPie}>
           <div className={tileTitle}>{'MACROS BY KCALS'}</div>
           <hr className={lineBreak}/>
           <div className={vizContainer}>
-            <PieChart width={140} height={140}>
+            <PieChart width={140} height={140}
+              style={{margin: '0 3em'}}>
               <Pie data={mockPieDataCals} cx={70} cy={70}
                 outerRadius={70}
                 fill='#82ca9d'
@@ -108,7 +109,7 @@ export default function GoalDashboard (props) {
           <div className={tileTitle}>{'DAILY CALORIES'}</div>
           <hr className={lineBreak}/>
           <span className={dailyCals}>{data.cal}</span>
-          <span className={calUnits}>{'Kcal'}</span>
+          <span className={calUnits} style={{width: '60%'}}>{'Kcal'}</span>
         </Panel>
       </div>
     </div>
