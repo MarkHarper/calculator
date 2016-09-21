@@ -1,7 +1,9 @@
 .container {
   width: 100%;
-  color: #4a90e2;
+  color: white;
   font-size: 18px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.11);
+  margin-bottom: 1em;
 }
 
 .navContainer {
@@ -18,7 +20,7 @@
   display: flex;
   flex-direction: row;
   padding: 0;
-  margin: 18px 0 !Important;
+  margin: 13px 0 !Important;
 }
 
 .navContainer li {
@@ -27,18 +29,18 @@
 }
 
 .link {
-  color: inherit;
+  color: #01BCFB;
   text-decoration: none;
 }
 
 .link:hover {
-  color: #1877E6;
+  color: #01BCFB;
   cursor: pointer;
   text-decoration: none;
 }
 
 .link:focus {
-  color: #1877E6;
+  color: #01BCFB;
   cursor: pointer;
   text-decoration: none;
 }

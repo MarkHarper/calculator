@@ -38,7 +38,7 @@ export default function GoalDashboard (props) {
   const data = macroCalc(stats)
   const mockPieDataGrams = formatPieData(data, false)
   const mockPieDataCals = formatPieData(data, true)
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28']
+  const COLORS = ['#30CBFF', '#FFC028', '#FF4928']
   let bodyFatArea
   if (stats.currentBodyFat) {
     bodyFatArea = <Area type='monotone' dataKey='bodyFat' stackId='1'
@@ -61,7 +61,7 @@ export default function GoalDashboard (props) {
               <YAxis domain={['dataMin - 2', 'dataMax + 2']} />
               <XAxis dataKey='week'/>
               <Area type='monotone' dataKey='weight' stackId='2'
-                stroke='#8884d8' fill='#8884d8'/>
+                stroke='#30CBFF' fill='#89E1FE' strokeWidth='2'/>
               {bodyFatArea}
             </AreaChart>
           </div>
@@ -71,15 +71,16 @@ export default function GoalDashboard (props) {
           <hr className={lineBreak}/>
           <PieChart width={140} height={140}
             style={{margin: '0 auto'}}>
+            <Tooltip />
             <Pie data={mockPieDataGrams} cx={70}
               cy={70}
               outerRadius={70}
-              fill='#82ca9d'
               labelLine={false}>
               {mockPieDataGrams.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)}
             </Pie>
           </PieChart>
-          <Table data={data} positioning={table} grams={true}/>
+          <Table colors={COLORS} data={data} positioning={table}
+            grams={true}/>
         </Panel>
       </div>
       <div className={bottomContainer}>
@@ -95,14 +96,15 @@ export default function GoalDashboard (props) {
           <div className={vizContainer}>
             <PieChart width={140} height={140}
               style={{margin: '0 3em'}}>
+              <Tooltip />
               <Pie data={mockPieDataCals} cx={70} cy={70}
                 outerRadius={70}
-                fill='#82ca9d'
                 labelLine={false}>
                 {mockPieDataCals.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)}
               </Pie>
             </PieChart>
-            <Table data={data} positioning={table} grams={false}/>
+            <Table colors={COLORS} data={data} positioning={table}
+              grams={false}/>
           </div>
         </Panel>
         <Panel className={caloriesContainer}>

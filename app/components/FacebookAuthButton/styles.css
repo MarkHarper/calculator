@@ -1,11 +1,4 @@
 .button {
-  /*background: #3B5998;
-  color: #fff;
-  padding: 15px;
-  border-radius: 5px;
-  border-width: 0;
-  font-size: 25px;
-  cursor: pointer;*/
   cursor: pointer;
   text-decoration: none;
   color: white;
@@ -14,7 +7,7 @@
   font-weight: 100;
   padding: 0.4em 0.7em;
   border-radius: 2px;
-  background-color: #4a90e2;
+  background-color: #30CBFF;
   box-shadow: 0 2px 3px 0 rgba(0,0,0,.22);
   margin: 1em 0 !Important;
 }

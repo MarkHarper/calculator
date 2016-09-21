@@ -38,30 +38,30 @@ export function formatPieData (data, kcals) {
   return kcals === true
   ? [
     {
-      name: 'Proteins',
-      value: data.proteins * 4,
-    },
-    {
-      name: 'Fats',
-      value: data.fats * 9,
-    },
-    {
-      name: 'Carbs',
-      value: data.carbs * 4,
-    },
-  ]
-  : [
-    {
-      name: 'Proteins',
+      name: 'Protein',
       value: data.proteins,
     },
     {
-      name: 'Fats',
+      name: 'Fat',
       value: data.fats,
     },
     {
       name: 'Carbs',
       value: data.carbs,
+    },
+  ]
+  : [
+    {
+      name: 'Protein',
+      value: parseInt(data.proteins / 4),
+    },
+    {
+      name: 'Fat',
+      value: parseInt(data.fats / 9),
+    },
+    {
+      name: 'Carbs',
+      value: parseInt(data.carbs / 4),
     },
   ]
 }
