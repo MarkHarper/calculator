@@ -1,6 +1,6 @@
 # Macros
 
-A simple macronutrient requirement calculator:
+A simple macronutrient requirement calculator
 
 ## TODOS
 
