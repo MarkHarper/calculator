@@ -19,6 +19,17 @@ requirements of the diet required to reach your goal.
 You will also see an estimation of the time it will 
 take to reach your goal.
 
+## Tech
+
+- React
+- Redux
+- Immutable
+- React Router
+- Webpack
+- Recharts
+- Mui CSS
+- Firebase
+
 ## Dev
 
 - Dev: npm start
