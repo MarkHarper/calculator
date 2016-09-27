@@ -29,18 +29,18 @@
 }
 
 .link {
-  color: #01BCFB;
+  color: #2196F3;
   text-decoration: none;
 }
 
 .link:hover {
-  color: #01BCFB;
+  color: #2196F3;
   cursor: pointer;
   text-decoration: none;
 }
 
 .link:focus {
-  color: #01BCFB;
+  color: #2196F3;
   cursor: pointer;
   text-decoration: none;
 }

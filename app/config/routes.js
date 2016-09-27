@@ -2,7 +2,7 @@ import React from 'react'
 import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 import { MainContainer, HomeContainer, AuthenticateContainer,
   AppsPageContainer, LogoutContainer, BasicInfoContainer,
-  BodyWeightContainer, BodyFatContainer, ExerciseInfoContainer,
+  BodyWeightContainer, ExerciseInfoContainer,
   DietPreferencesContainer } from 'containers'
 
 export default function getRoutes (checkAuth, history) {
@@ -14,7 +14,6 @@ export default function getRoutes (checkAuth, history) {
         <Route path='logout' component={LogoutContainer} />
         <Route path='signup/basic-info' component={BasicInfoContainer} />
         <Route path='signup/body-weight' component={BodyWeightContainer} />
-        <Route path='signup/body-fat' component={BodyFatContainer} />
         <Route path='signup/exercise-info' component={ExerciseInfoContainer} />
         <Route path='signup/diet-preferences' component={DietPreferencesContainer} />
         <IndexRoute component={HomeContainer} onEnter={checkAuth} />

@@ -38,7 +38,7 @@ export default function GoalDashboard (props) {
   const data = macroCalc(stats)
   const mockPieDataGrams = formatPieData(data, false)
   const mockPieDataCals = formatPieData(data, true)
-  const COLORS = ['#30CBFF', '#FFC028', '#FF4928']
+  const COLORS = ['#2196F3', '#FFC028', '#FF4928']
   let bodyFatArea
   if (stats.currentBodyFat) {
     bodyFatArea = <Area type='monotone' dataKey='bodyFat' stackId='1'
@@ -61,7 +61,7 @@ export default function GoalDashboard (props) {
               <YAxis domain={['dataMin - 2', 'dataMax + 2']} />
               <XAxis dataKey='week'/>
               <Area type='monotone' dataKey='weight' stackId='2'
-                stroke='#30CBFF' fill='#89E1FE' strokeWidth='2'/>
+                stroke='#2196F3' fill='#2196F3' strokeWidth='2'/>
               {bodyFatArea}
             </AreaChart>
           </div>

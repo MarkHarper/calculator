@@ -14,8 +14,8 @@ const BodyWeightContainer = React.createClass({
     editableTargetWeight: PropTypes.string.isRequired,
     currentWeight: PropTypes.string.isRequired,
     targetWeight: PropTypes.string.isRequired,
-    currentBodyFat: PropTypes.string.isRequired,
-    targetBodyFat: PropTypes.string.isRequired,
+    currentBodyFat: PropTypes.string,
+    targetBodyFat: PropTypes.string,
     exerciseTime: PropTypes.string.isRequired,
     exerciseIntensity: PropTypes.string.isRequired,
     fatPreference: PropTypes.string.isRequired,
@@ -24,7 +24,7 @@ const BodyWeightContainer = React.createClass({
     router: PropTypes.object.isRequired,
   },
   navNext: function () {
-    this.context.router.replace('/signup/body-fat')
+    this.context.router.replace('/signup/exercise-info')
   },
   render: function () {
     return (

@@ -11,8 +11,8 @@ ExerciseInfo.propTypes = {
   updateSignupText: PropTypes.func.isRequired,
   currentWeight: PropTypes.string.isRequired,
   targetWeight: PropTypes.string.isRequired,
-  currentBodyFat: PropTypes.string.isRequired,
-  targetBodyFat: PropTypes.string.isRequired,
+  currentBodyFat: PropTypes.string,
+  targetBodyFat: PropTypes.string,
   exerciseTime: PropTypes.string.isRequired,
   exerciseIntensity: PropTypes.string.isRequired,
   editableExerciseTime: PropTypes.string.isRequired,
@@ -58,7 +58,9 @@ export default function ExerciseInfo (props) {
         value={props.editableExerciseIntensity}
         floatingLabel={true}
         maxLength={2}
-        type='text'
+        max={3}
+        min={1}
+        type='number'
         placeholder={props.exerciseIntensity}
         required={true}/>
       <Button style={style} variant='raised'>{'Continue'}</Button>

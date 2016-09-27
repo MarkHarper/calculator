@@ -14,7 +14,21 @@ BMI Formula
 ( Weight * 703 ) / ( height^2 )
 */
 
+function converFatPreference (fp) {
+  if (fp === 1) {
+    return 0.4
+  } else if (fp === 2) {
+    return 0.5
+  } else if (fp === 3) {
+    return 0.6
+  }
+}
+
 export function macroCalc (data) {
+  data.exerciseIntensity = data.exerciseIntensity + 8
+  if (data.fatPreference) {
+    data.fatPreference = converFatPreference(data.fatPreference)
+  }
   let cal = parseInt(data.targetWeight * (data.exerciseTime + data.exerciseIntensity))
   return {
     proteins: parseInt(data.targetWeight * 4),
@@ -71,6 +85,7 @@ export function timelineCalc (data) {
     }
     return dataArray
   } else {
+    data.exerciseIntensity = data.exerciseIntensity + 8
     let fCal = data.currentWeight * (data.exerciseTime + data.exerciseIntensity)
     let nCal = data.targetWeight * (data.exerciseTime + data.exerciseIntensity)
     let cBW = data.currentWeight

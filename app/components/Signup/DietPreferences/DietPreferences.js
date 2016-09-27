@@ -12,8 +12,8 @@ DietPreferences.propTypes = {
   completeSignup: PropTypes.func.isRequired,
   currentWeight: PropTypes.string.isRequired,
   targetWeight: PropTypes.string.isRequired,
-  currentBodyFat: PropTypes.string.isRequired,
-  targetBodyFat: PropTypes.string.isRequired,
+  currentBodyFat: PropTypes.string,
+  targetBodyFat: PropTypes.string,
   exerciseTime: PropTypes.string.isRequired,
   exerciseIntensity: PropTypes.string.isRequired,
   fatPreference: PropTypes.string.isRequired,
@@ -50,7 +50,9 @@ export default function DietPreferences (props) {
         value={props.editableFatPreference}
         floatingLabel={true}
         maxLength={4}
-        type='text'
+        type='number'
+        max={3}
+        min={1}
         placeholder={props.fatPreference}
         required={true}/>
       <Button style={style} variant='raised'>{'Continue'}</Button>

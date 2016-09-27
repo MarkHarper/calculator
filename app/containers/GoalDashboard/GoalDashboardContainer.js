@@ -7,9 +7,9 @@ import * as goalActionCreators from 'redux/modules/goals'
 const GoalDashboardContainer = React.createClass({
   propTypes: {
     currentWeight: PropTypes.string.isRequired,
-    currentBodyFat: PropTypes.string.isRequired,
+    currentBodyFat: PropTypes.string,
     targetWeight: PropTypes.string.isRequired,
-    targetBodyFat: PropTypes.string.isRequired,
+    targetBodyFat: PropTypes.string,
     exerciseTime: PropTypes.string.isRequired,
     exerciseIntensity: PropTypes.string.isRequired,
     fatPreference: PropTypes.string.isRequired,
