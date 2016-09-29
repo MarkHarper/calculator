@@ -59,7 +59,6 @@ const MainContainer = React.createClass({
               } else if (!goal.fatPreference) {
                 this.context.router.replace('signup/diet-preferences')
               } else {
-                
                 this.context.router.replace('results')
               }
             }

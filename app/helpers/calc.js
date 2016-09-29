@@ -25,7 +25,6 @@ function converFatPreference (fp) {
 }
 
 export function macroCalc (data) {
-  data.exerciseIntensity = data.exerciseIntensity + 8
   if (data.fatPreference) {
     data.fatPreference = converFatPreference(data.fatPreference)
   }
@@ -85,7 +84,7 @@ export function timelineCalc (data) {
     }
     return dataArray
   } else {
-    data.exerciseIntensity = data.exerciseIntensity + 8
+    data.exerciseIntensity = data.exerciseIntensity
     let fCal = data.currentWeight * (data.exerciseTime + data.exerciseIntensity)
     let nCal = data.targetWeight * (data.exerciseTime + data.exerciseIntensity)
     let cBW = data.currentWeight

@@ -28,7 +28,7 @@ export default function GoalDashboard (props) {
     currentWeight: parseFloat(props.currentWeight),
     currentBodyFat: parseFloat(props.currentBodyFat),
     exerciseTime: parseFloat(props.exerciseTime),
-    exerciseIntensity: parseFloat(props.exerciseIntensity),
+    exerciseIntensity: parseFloat(props.exerciseIntensity) + 8,
     targetWeight: parseFloat(props.targetWeight),
     targetBodyFat: parseFloat(props.targetBodyFat),
     fatPreference: parseFloat(props.fatPreference),
